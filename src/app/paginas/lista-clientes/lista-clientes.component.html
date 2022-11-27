@@ -1,0 +1,41 @@
+<div>
+    <table *ngIf="clientes.length > 0" >
+        <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Telefone</th>
+          <th scope="col">Email</th>
+          <th scope="col">CPF</th>
+          <th scope="col">Cep</th>
+          <th scope="col">Logradouro</th>
+          <th scope="col">Número</th>
+          <th scope="col">Complemento</th>
+          <th scope="col">Bairro</th>
+          <th scope="col">Cidade</th>
+          <th scope="col">Estado</th>
+          <th scope="col" colspan="2">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientes">
+          <th scope="row">{{cliente.id}}</th>
+          <td>{{cliente.nome}}</td>
+          <td>{{cliente.telefone }}</td>
+          <td>{{cliente.email}}</td>
+          <td>{{cliente.cpf}}</td>
+          <td>{{cliente.cep}}</td>
+          <td>{{cliente.logradouro}}</td>
+          <td>{{cliente.numero}}</td>
+          <td>{{cliente.complemento}}</td>
+          <td>{{cliente.bairro}}</td>
+          <td>{{cliente.cidade}}</td>
+          <td>{{cliente.estado}}</td>
+          <td><a routerLink="/altera-cliente/{{cliente.id}}">Alterar</a></td>
+          <td><button (click)="excluir(cliente)">Excluir</button></td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+    

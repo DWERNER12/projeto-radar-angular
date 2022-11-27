@@ -9,6 +9,8 @@ import { CadastroProdutosComponent } from './paginas/cadastro-produtos/cadastro-
 import { CadastroClientesComponent } from './paginas/cadastro-clientes/cadastro-clientes.component';
 import { CadastroPedidosClientesComponent } from './paginas/cadastro-pedidos-clientes/cadastro-pedidos-clientes.component';
 import { LoginComponent } from './paginas/login/login.component';
+import { FormsModule } from '@angular/forms';
+import { ListaClientesComponent } from './paginas/lista-clientes/lista-clientes.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +20,13 @@ import { LoginComponent } from './paginas/login/login.component';
     CadastroProdutosComponent,
     CadastroClientesComponent,
     CadastroPedidosClientesComponent,
-    LoginComponent
+    LoginComponent,
+    ListaClientesComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

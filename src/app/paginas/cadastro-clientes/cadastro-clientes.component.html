@@ -1,1 +1,52 @@
-<p>cadastro-clientes works!</p>
+<div>
+    <form >
+        <div>
+            <input type="text" id="nome" name="nome" [(ngModel)]="cliente.nome">
+            <label for="nome">Nome</label>
+        </div>
+        <div>
+            <input type="text" id="telefone" name="telefone" [(ngModel)]="cliente.telefone">
+            <label for="telefone">Telefone</label>
+        </div> 
+        <div>
+            <input type="text" id="email" name="email" [(ngModel)]="cliente.email">
+            <label for="nome">Email</label>
+        </div>
+        <div>
+            <input type="text" id="cpf" name="cpf" [(ngModel)]="cliente.cpf">
+            <label for="cpf">CPF</label>
+        </div>
+        <div>
+            <input type="text" id="CEP" name="CEP" [(ngModel)]="cliente.cep">
+            <label for="CEP">CEP</label>
+        </div>
+        <div>
+            <input type="text" id="logradouro" name="logradouro" [(ngModel)]="cliente.logradouro">
+            <label for="logradouro">Logradouro</label>
+        </div>
+        <div>
+            <input type="text" id="numero" name="numero" [(ngModel)]="cliente.numero">
+            <label for="numero">Número</label>
+        </div>
+        <div>
+            <input type="text" id="complemento" name="complemento" [(ngModel)]="cliente.complemento">
+            <label for="complemento">complemento</label>
+        </div>
+        <div>
+            <input type="text" id="bairro" name="bairro" [(ngModel)]="cliente.bairro">
+            <label for="bairro">Bairro</label>
+        </div>
+        
+        <div>
+            <input type="text" id="cidade" name="cidade" [(ngModel)]="cliente.cidade">
+            <label for="cidade">Cidade</label>
+        </div>
+        <div>
+            <input type="text" id="estado" name="estado" [(ngModel)]="cliente.estado">
+            <label for="nome">Estado</label>
+        </div>
+
+        <button type="button" (click)="salvar()">Salvar</button>
+        
+    </form>
+</div>

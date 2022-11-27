@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Cliente } from 'src/app/interface/cliente';
+import { ClienteServico } from 'src/app/services/clienteServico';
 
 @Component({
   selector: 'app-cadastro-clientes',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CadastroClientesComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit(): void {
+  }
+  public clientes:Cliente[] = ClienteServico.buscaClientes()
+  public cliente:Cliente = {} as Cliente
+
+  salvar() { 
+    ClienteServico.adicionaCliente(this.cliente)
+    
   }
 
 }
