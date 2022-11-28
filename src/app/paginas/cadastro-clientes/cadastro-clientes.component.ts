@@ -27,7 +27,7 @@ export class CadastroClientesComponent implements OnInit {
   public clientes:Cliente[] = ClienteServico.buscaClientes()
   public cliente:Cliente = {} as Cliente
 
-  salvar() { 
+  salvarCliente() { 
     if(this.cliente.id > 0){
       ClienteServico.alteraCliente(this.cliente)
     }

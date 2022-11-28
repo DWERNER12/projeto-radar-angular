@@ -1,1 +1,19 @@
-<p>cadastro-produtos works!</p>
+<div>
+    <h3>Cadastro Produto</h3>
+    <form >
+        <div>
+            <input type="text" id="nome" name="nome" [(ngModel)]="produto.nome">
+            <label for="nome">Nome</label>
+        </div>
+        <div>
+            <input type="text" id="descricao" name="descricao" [(ngModel)]="produto.descricao">
+            <label for="descricao">Descrição</label>
+        </div> 
+        <div>
+            <input type="text" id="valor" name="valor" [(ngModel)]="produto.valor">
+            <label for="valor">Valor</label>
+        </div>
+
+        <button type="button" (click)="salvarProduto()">Salvar</button>
+     </form>
+</div>
