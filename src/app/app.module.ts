@@ -14,6 +14,7 @@ import { LoginComponent } from './paginas/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { ListaClientesComponent } from './paginas/lista-clientes/lista-clientes.component';
 import { ListaProdutosComponent } from './paginas/lista-produtos/lista-produtos.component';
+import { FooterComponent } from './componentes/footer/footer.component';
 
 
 registerLocaleData(ptBr)
@@ -28,7 +29,8 @@ registerLocaleData(ptBr)
     CadastroPedidosClientesComponent,
     LoginComponent,
     ListaClientesComponent,
-    ListaProdutosComponent
+    ListaProdutosComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
