@@ -19,7 +19,7 @@ O sistema será desenvolvido em Angular <🅰️> com as seguintes funcionalidad
 
 ● Página de fluxo de caixa, mostrando a movimentação do mês.
 
-## Campos exigidos para as entidades:
+## Campos exigidos para as entidades 📜
 
 ● Produtos (id, nome, descricao, valor, qtd_estoque);
 
@@ -29,7 +29,7 @@ O sistema será desenvolvido em Angular <🅰️> com as seguintes funcionalidad
 
 ● PedidosProdutos (id, pedido_id, produto_id, valor, quantidade).
 
-## Tecnologias Utilizadas
+## Tecnologias Utilizadas 🕹️
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" width="100px">
 
