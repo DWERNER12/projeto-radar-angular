@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Produto } from 'src/app/interface/produto';
+import { LogadoService } from 'src/app/services/logado.service';
 import { ProdutoObserver } from 'src/app/services/produtoObserver.service';
 import { ProdutoServico } from 'src/app/services/produtoServico';
 
@@ -15,6 +16,7 @@ export class CadastroProdutosComponent implements OnInit {
   constructor(
     private router:Router,
     private routerParams: ActivatedRoute,
+    private logadoService: LogadoService,
     private produtoObserver: ProdutoObserver
   ) { }
 

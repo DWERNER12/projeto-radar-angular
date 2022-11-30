@@ -5,9 +5,11 @@ import { CadastroProdutosComponent } from './paginas/cadastro-produtos/cadastro-
 import { HomeComponent } from './paginas/home/home.component';
 import { ListaClientesComponent } from './paginas/lista-clientes/lista-clientes.component';
 import { ListaProdutosComponent } from './paginas/lista-produtos/lista-produtos.component';
+import { LoginComponent } from './paginas/login/login.component';
 
 const routes: Routes = [
  {path: '', component:HomeComponent},
+ {path: 'login', component:LoginComponent},
  {path: 'cadastro-cliente', component:CadastroClientesComponent},
  {path: 'lista-clientes', component: ListaClientesComponent},
  {path: 'altera-cliente/:id', component: CadastroClientesComponent},
