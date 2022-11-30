@@ -79,6 +79,3 @@ O sistema será desenvolvido em Angular <🅰️> com as seguintes funcionalidad
 - [David Wermer](https://www.linkedin.com/in/david-werner-677116113/) 👨🏻‍💻;
 - [Diego Oliveira](https://www.linkedin.com/in/diego-oliveira-95344b33/) 👨‍💻;
 - [Leanderson Dias de Lima](https://www.linkedin.com/in/leanderson-dias-de-lima/) 👨🏾‍💻.
-
-
--- Teste commit
