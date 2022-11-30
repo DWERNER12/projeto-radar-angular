@@ -81,4 +81,3 @@ O sistema será desenvolvido em Angular <🅰️> com as seguintes funcionalidad
 - [Leanderson Dias de Lima](https://www.linkedin.com/in/leanderson-dias-de-lima/) 👨🏾‍💻.
 
 
--- Teste commit
