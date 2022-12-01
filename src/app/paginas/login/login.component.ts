@@ -18,8 +18,9 @@ export class LoginComponent implements OnInit {
   public mensagem:string = ""
 
   logar(){
-    if(this.email === "grupov" && this.senha === "5"){
+    if(this.email === "5" && this.senha === "5"){
       localStorage.setItem("logado", "true")
+     
       this.router.navigateByUrl("/cadastro-cliente")
     }
     else{

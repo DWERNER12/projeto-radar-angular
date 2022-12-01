@@ -20,8 +20,9 @@ export class LogadoService {
 
   public deslogar(){
     localStorage.removeItem("logado")
+    
     this.logado = false
-    this.router.navigateByUrl("/")
+    this.router.navigateByUrl("")
   }
 
   public redirecionaLoginNaoLogado(): boolean{
