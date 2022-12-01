@@ -12,3 +12,4 @@ export class Pedido{
         for (let i = 0; i < this.itens.length; i++) {}
         return 0; 
     }
+}
