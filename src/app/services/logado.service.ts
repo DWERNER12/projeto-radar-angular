@@ -20,6 +20,7 @@ export class LogadoService {
 
   public deslogar(){
     localStorage.removeItem("logado")
+    
     this.logado = false
     this.router.navigateByUrl("")
   }
