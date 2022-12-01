@@ -150,174 +150,50 @@
     <main>
       <div class="container-fluid px-4">
         <!--Conteudo-->
-        <div class="cantainer">
-          <div class="row justify-content-center">
-            <div class="col-lg-7">
-              <div class="card shadow-lg border-0 rounded-lg mt-5">
-                <div class="card-header">
-                  <h3 class="text-center font-weight-light my-4">
-                    Cadastro Cliente
-                  </h3>
-                </div>
-                <div class="card-body">
-                  <form>
-                    <div class="row mb-3">
-                      <div class="col-md-6">
-                        <div class="form-floating mb-3 mb-md-0">
-                          <input
-                            class="form-control"
-                            type="text"
-                            id="nome"
-                            name="nome"
-                            [(ngModel)]="cliente.nome"
-                          />
-                          <label for="nome">Nome</label>
-                        </div>
-                      </div>
-
-                      <div class="col-md-6">
-                        <div class="form-floating">
-                          <input
-                            class="form-control"
-                            type="text"
-                            id="telefone"
-                            name="telefone"
-                            [(ngModel)]="cliente.telefone"
-                          />
-                          <label for="telefone">Telefone</label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-floating mb-3">
-                      <input
-                        class="form-control"
-                        type="text"
-                        id="email"
-                        name="email"
-                        [(ngModel)]="cliente.email"
-                      />
-                      <label for="nome">Email</label>
-                    </div>
-
-                    <div class="row mb-3">
-                      <div class="col-md-6">
-                        <div class="form-floating mb-3 mb-md-0">
-                          <input
-                            class="form-control"
-                            type="text"
-                            id="cpf"
-                            name="cpf"
-                            [(ngModel)]="cliente.cpf"
-                          />
-                          <label for="cpf">CPF</label>
-                        </div>
-                      </div>
-
-                      <div class="col-md-6">
-                        <div class="form-floating mb-3 mb-md-0">
-                          <input
-                            class="form-control"
-                            type="text"
-                            id="CEP"
-                            name="CEP"
-                            [(ngModel)]="cliente.cep"
-                          />
-                          <label for="CEP">CEP</label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row mb-3">
-                      <div class="col-md-6">
-                        <div class="form-floating mb-3 mb-md-0">
-                          <input
-                            class="form-control"
-                            type="text"
-                            id="logradouro"
-                            name="logradouro"
-                            [(ngModel)]="cliente.logradouro"
-                          />
-                          <label for="logradouro">Logradouro</label>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-floating mb-3 mb-md-0">
-                          <input
-                            class="form-control"
-                            type="text"
-                            id="numero"
-                            name="numero"
-                            [(ngModel)]="cliente.numero"
-                          />
-                          <label for="numero">Número</label>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <div class="col-md-6">
-                        <div class="form-floating mb-3 mb-md-0">
-                          <input
-                            class="form-control"
-                            type="text"
-                            id="complemento"
-                            name="complemento"
-                            [(ngModel)]="cliente.complemento"
-                          />
-                          <label for="complemento">complemento</label>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-floating mb-3 mb-md-0">
-                          <input
-                            class="form-control"
-                            type="text"
-                            id="bairro"
-                            name="bairro"
-                            [(ngModel)]="cliente.bairro"
-                          />
-                          <label for="bairro">Bairro</label>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <div class="col-md-6">
-                        <div class="form-floating mb-3 mb-md-0">
-                          <input
-                            class="form-control"
-                            type="text"
-                            id="cidade"
-                            name="cidade"
-                            [(ngModel)]="cliente.cidade"
-                          />
-                          <label for="cidade">Cidade</label>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-floating mb-3 mb-md-0">
-                          <input
-                            class="form-control"
-                            type="text"
-                            id="estado"
-                            name="estado"
-                            [(ngModel)]="cliente.estado"
-                          />
-                          <label for="nome">Estado</label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="mt-4 mb-0">
-                      <div class="d-grid">
-                        <button class="btn btn-primary btn-block" type="button" (click)="salvarCliente()">
-                          Salvar
-                        </button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
+        <h1 class="mt-4">Dashboard</h1>
+        <ol class="breadcrumb mb-4">
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+        <div>
+          <table *ngIf="clientes.length > 0">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Email</th>
+                <th scope="col">CPF</th>
+                <th scope="col">Cep</th>
+                <th scope="col">Logradouro</th>
+                <th scope="col">Número</th>
+                <th scope="col">Complemento</th>
+                <th scope="col">Bairro</th>
+                <th scope="col">Cidade</th>
+                <th scope="col">Estado</th>
+                <th scope="col" colspan="2">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cliente of clientes">
+                <th scope="row">{{ cliente.id }}</th>
+                <td>{{ cliente.nome }}</td>
+                <td>{{ cliente.telefone }}</td>
+                <td>{{ cliente.email }}</td>
+                <td>{{ cliente.cpf }}</td>
+                <td>{{ cliente.cep }}</td>
+                <td>{{ cliente.logradouro }}</td>
+                <td>{{ cliente.numero }}</td>
+                <td>{{ cliente.complemento }}</td>
+                <td>{{ cliente.bairro }}</td>
+                <td>{{ cliente.cidade }}</td>
+                <td>{{ cliente.estado }}</td>
+                <td>
+                  <a routerLink="/altera-cliente/{{ cliente.id }}">Alterar</a>
+                </td>
+                <td><button (click)="excluir(cliente)">Excluir</button></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </main>
