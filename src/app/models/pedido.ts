@@ -11,11 +11,4 @@ export class Pedido{
         // calcular o valor dos this.itens
         for (let i = 0; i < this.itens.length; i++) {}
         return 0; 
-<<<<<<< HEAD
     }
-=======
-    } 
->>>>>>> 1d182f087a28782bab9355acddf4768e61221e76
-
-
-}
