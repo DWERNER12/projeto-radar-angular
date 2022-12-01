@@ -4,7 +4,7 @@
       <div class="sb-sidenav-menu">
         <div class="nav">
           <div class="sb-sidenav-menu-heading">Core</div>
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" routerLink="">
             <div class="sb-nav-link-icon">
               <svg
                 class="svg-inline--fa fa-gauge-high"
@@ -79,8 +79,8 @@
             data-bs-parent="#sidenavAccordion"
           >
             <nav class="sb-sidenav-menu-nested nav">
-              <a class="nav-link" routerLink="/cadastro-cliente">Cliente</a>
-              <a class="nav-link" routerLink="/cadastro-produto">Produto</a>
+              <a class="nav-link" routerLink="/login">Cliente</a>
+              <a class="nav-link" routerLink="/login">Produto</a>
             </nav>
           </div>
           <a
@@ -150,50 +150,60 @@
     <main>
       <div class="container-fluid px-4">
         <!--Conteudo-->
-        <h1 class="mt-4">Dashboard</h1>
-        <ol class="breadcrumb mb-4">
-          <li class="breadcrumb-item active">Dashboard</li>
-        </ol>
-        <div>
-          <table *ngIf="clientes.length > 0">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Telefone</th>
-                <th scope="col">Email</th>
-                <th scope="col">CPF</th>
-                <th scope="col">Cep</th>
+        <h1 class="mt-4">Clientes Cadastrados</h1>
+        <div class="card mb-4">
+          <div class="card-body">
+            <table
+              class="table table-bordered"
+              *ngIf="clientes.length > 0"
+            >
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Telefone</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">CPF</th>
+                  <!--<th scope="col">Cep</th>
                 <th scope="col">Logradouro</th>
                 <th scope="col">Número</th>
                 <th scope="col">Complemento</th>
                 <th scope="col">Bairro</th>
                 <th scope="col">Cidade</th>
-                <th scope="col">Estado</th>
-                <th scope="col" colspan="2">Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let cliente of clientes">
-                <th scope="row">{{ cliente.id }}</th>
-                <td>{{ cliente.nome }}</td>
-                <td>{{ cliente.telefone }}</td>
-                <td>{{ cliente.email }}</td>
-                <td>{{ cliente.cpf }}</td>
-                <td>{{ cliente.cep }}</td>
+                <th scope="col">Estado</th>-->
+                  <th scope="col" colspan="2">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let cliente of clientes">
+                  <th scope="row">{{ cliente.id }}</th>
+                  <td>{{ cliente.nome }}</td>
+                  <td>{{ cliente.telefone }}</td>
+                  <td>{{ cliente.email }}</td>
+                  <td>{{ cliente.cpf }}</td>
+                  <!--<<td>{{ cliente.cep }}</td>
                 <td>{{ cliente.logradouro }}</td>
                 <td>{{ cliente.numero }}</td>
                 <td>{{ cliente.complemento }}</td>
                 <td>{{ cliente.bairro }}</td>
                 <td>{{ cliente.cidade }}</td>
-                <td>{{ cliente.estado }}</td>
-                <td>
-                  <a routerLink="/altera-cliente/{{ cliente.id }}">Alterar</a>
-                </td>
-                <td><button (click)="excluir(cliente)">Excluir</button></td>
-              </tr>
-            </tbody>
-          </table>
+                <td>{{ cliente.estado }}</td>-->
+                  <td>
+                    <a
+                      class="btn btn-warning"
+                      routerLink="/altera-cliente/{{ cliente.id }}"
+                      >Alterar</a
+                    >
+                  </td>
+                  <td>
+                    <button class="btn btn-primary" (click)="excluir(cliente)">
+                      Excluir
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </main>
