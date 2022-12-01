@@ -19,7 +19,7 @@ export class CadastroClientesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    //if(this.logadoService.redirecionaLoginNaoLogado()) return
+    if(this.logadoService.redirecionaLoginNaoLogado()) return
    let id:Number = this.routerParams.snapshot.params['id']
     if(id){
       
