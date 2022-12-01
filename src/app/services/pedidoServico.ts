@@ -8,13 +8,7 @@ export class PedidoServico{
         }
 
         return PedidoServico.pedido
-<<<<<<< HEAD
     }
-=======
-    } 
->>>>>>> 1d182f087a28782bab9355acddf4768e61221e76
-
-
 
     
 }
