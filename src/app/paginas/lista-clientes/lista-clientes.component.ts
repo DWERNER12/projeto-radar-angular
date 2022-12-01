@@ -11,7 +11,7 @@ import { ClienteServico } from 'src/app/services/clienteServico';
 export class ListaClientesComponent implements OnInit {
 
   constructor(
-    
+    private router:Router,
   ) { }
 
   ngOnInit(): void {
@@ -22,6 +22,14 @@ export class ListaClientesComponent implements OnInit {
   excluir(cliente:Cliente){
     ClienteServico.excluirCliente(cliente)
     this.clientes = ClienteServico.buscaClientes()
+  }
+
+  novoCliente(){
+    this.router.navigateByUrl("/cadastro-cliente")
+  }
+
+  selecionaCliente(){
+    
   }
 
 }
