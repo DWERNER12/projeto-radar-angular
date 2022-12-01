@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from 'src/app/interface/cliente';
 import { ClienteServico } from 'src/app/services/clienteServico';
+import { LogadoService } from 'src/app/services/logado.service';
 
 @Component({
   selector: 'app-cadastro-clientes',
@@ -13,9 +14,12 @@ export class CadastroClientesComponent implements OnInit {
   constructor(
     private router:Router,
     private routerParams: ActivatedRoute,
+    private logadoService: LogadoService,
+    
   ) { }
 
   ngOnInit(): void {
+    //if(this.logadoService.redirecionaLoginNaoLogado()) return
    let id:Number = this.routerParams.snapshot.params['id']
     if(id){
       
@@ -27,7 +31,7 @@ export class CadastroClientesComponent implements OnInit {
   public clientes:Cliente[] = ClienteServico.buscaClientes()
   public cliente:Cliente = {} as Cliente
 
-  salvar() { 
+  salvarCliente() { 
     if(this.cliente.id > 0){
       ClienteServico.alteraCliente(this.cliente)
     }

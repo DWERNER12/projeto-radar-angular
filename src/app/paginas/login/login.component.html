@@ -1,1 +1,40 @@
-<p>login works!</p>
+<section class="vh-100" style="background-color: rgb(245, 115, 28);">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-xl-10">
+          <div class="card" style="border-radius: 1rem;">
+            <div class="row g-0">
+              <div class="col-md-6 col-lg-5 d-none d-md-block">
+                <img src="https://scontent.fcgh6-1.fna.fbcdn.net/v/t1.6435-9/118983610_2661453750850640_2643832708400381203_n.png?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=1ZpKJmujO-wAX-eIyRW&_nc_ht=scontent.fcgh6-1.fna&oh=00_AfCBVyufZCa1ejzkkBO5SD7vFBd7oUXcPuzQWFW7tbzcog&oe=63ADD068"
+                  alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+              </div>
+              <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                <div class="card-body p-4 p-lg-5 text-black">
+  
+                    <form id="contactForm">
+                        
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="nome" name="nome" type="text" [(ngModel)]="email" placeholder="Digite o seu nome...">
+                            <label for="nome">Email</label>
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="endereco" name="endereco" type="password" [(ngModel)]="senha" placeholder="Digite seu endereço">
+                            <label for="email">Senha</label>
+                        </div>
+    
+                        <div *ngIf="mensagem" class="alert alert-danger" role="alert">
+                            {{mensagem}}
+                        </div>    
+    
+                        <button class="btn btn-primary btn-xl" id="submitButton" type="button" (click)="logar()">Enviar</button>
+                    </form>
+  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
