@@ -1,1 +1,15 @@
-<p>cadastro-pedidos-clientes works!</p>
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-xl-7">
+            <div class="form-floating mb-3">
+                <h1>Carrinho com seus produtos</h1>
+                <div *ngFor="let pedido of mostraPedido" class="carrinho">
+                  <p> Nome : {{pedido.nome}}</p>
+                  <p> Descrição : {{pedido.descricao}}</p>
+                  <p> Preço : {{pedido.valor}}</p>
+                  
+                  
+                </div>
+  
+            </div>
+    </div>
+  </div>
