@@ -16,21 +16,24 @@ export class CadastroPedidosClientesComponent implements OnInit {
   constructor(
     private router:Router,
     private routerParams: ActivatedRoute,
-    //public pedido: Pedido,
+    
     public carrinhoService : CarrinhoService
     ) { }
   ngOnInit(): void {
+    this.pedido = PedidoServico.get()
   }
 
   public produtos:Produto[] = ProdutoServico.buscaProduto()
+  public pedido:Pedido = PedidoServico.buscaPedidoId()
   public produto:Produto = {} as Produto
+  public pedidos:Pedido = {} as Pedido
 
-  /*itens(): Produto[] {
-    return this.pedido.itens;
+  itens(): Produto[] {
+    return this.pedido.itens; 
   }
 
-  removeItem(){
-
-  }*/
+  removeItem(pedido:Pedido){
+    
+  }
 
 }
