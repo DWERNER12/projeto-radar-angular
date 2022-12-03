@@ -9,4 +9,9 @@ export class PedidoServico{
 
         return PedidoServico.pedido
     }
+<<<<<<< HEAD
+=======
+
+    
+>>>>>>> 1905511520553b1582da0790c1352b9daa347206
 }
