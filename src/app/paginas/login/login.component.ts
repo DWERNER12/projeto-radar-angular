@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
       }
       this.router.navigateByUrl(url) 
       //======V até´aqui
-      this.router.navigateByUrl("/cadastro-cliente")
+      //this.router.navigateByUrl("/cadastro-cliente")
         
     }
     else{
