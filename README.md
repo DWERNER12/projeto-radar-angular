@@ -77,7 +77,6 @@ O sistema será desenvolvido em Angular <🅰️> com as seguintes funcionalidad
 
 - [Daniele Santana](https://www.linkedin.com/in/daniele-santana-8479a9224/) 👩🏼‍💻;
 - [David Wermer](https://www.linkedin.com/in/david-werner-677116113/) 👨🏻‍💻;
-- [Diego Oliveira](https://www.linkedin.com/in/diego-oliveira-95344b33/) 👨‍💻;
 - [Kenps Rossi](https://www.linkedin.com/in/kenps-adv-dev/) 👨🏻‍💻;
 - [Leanderson Dias de Lima](https://www.linkedin.com/in/leanderson-dias-de-lima/) 👨🏾‍💻;
 - [Rômulo Dias](https://www.linkedin.com/in/romulondias/) 👨🏻‍💻.
