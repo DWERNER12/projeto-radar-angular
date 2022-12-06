@@ -1,11 +1,14 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Produto } from 'src/app/interface/produto';
 import { ProdutoObserver } from 'src/app/services/produtoObserver.service';
 import { ProdutoServico } from 'src/app/services/produtoServico';
 import { Router } from '@angular/router';
 import { PedidoServico } from 'src/app/services/pedidoServico';
 import { CarrinhoService } from 'src/app/services/carrinho.service';
+
 import { HttpClient } from '@angular/common/http';
+
+import { Pedido } from 'src/app/models/pedido';
 
 @Component({
   selector: 'app-lista-produtos',
@@ -13,39 +16,35 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./lista-produtos.component.css']
 })
 export class ListaProdutosComponent implements OnInit {
-
+  
   constructor(
-    public carrinhoService: CarrinhoService,
-    private router: Router,
-    private http: HttpClient,
-    public produtoObserver: ProdutoObserver,
-    private cd: ChangeDetectorRef
+    public carrinhoService:CarrinhoService,
+    private router:Router,
+    public produtoObserver: ProdutoObserver
   ) { }
 
   ngOnInit(): void {
     this.produtoServico = new ProdutoServico(this.http)
     this.listaProdutos()
+
+    this.pedido = PedidoServico.get()
   }
 
-  private produtoServico: ProdutoServico = {} as ProdutoServico
-  public produtos: Produto[] | undefined = []
+  public produtos:Produto[] = ProdutoServico.buscaProduto()
+  public pedido:Pedido = {} as Pedido
 
-  private async listaProdutos() {
-    this.produtos = await this.produtoServico.lista();
+  excluirProduto(produto:Produto){
+    ProdutoServico.excluirProdutos(produto)
+    this.produtos = ProdutoServico.buscaProduto()
+    this.produtoObserver.atualizaEstoque()
+
   }
 
-  async excluirProduto(produto: Produto) {
-    await this.produtoServico.excluirPorId(produto.id)
-    this.listaProdutos()
-    //this.produtoObserver.atualizaEstoque()
-    this.cd.detectChanges()
-  }
-
-  novoProduto() {
+  novoProduto(){
     this.router.navigateByUrl("/cadastro-produto")
   }
 
-  addCarrinho(produto: Produto) {
+  addCarrinho(produto:Produto){
     PedidoServico.get().idCliente = 1
     PedidoServico.get().itens.push(produto)
     this.carrinhoService.atualizaCarrinho()

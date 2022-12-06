@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Produto } from 'src/app/interface/produto';
@@ -9,71 +8,56 @@ import { ProdutoServico } from 'src/app/services/produtoServico';
 @Component({
   selector: 'app-cadastro-produtos',
   templateUrl: './cadastro-produtos.component.html',
-  styleUrls: ['./cadastro-produtos.component.css']
+  styleUrls: ['./cadastro-produtos.component.css'],
 })
 export class CadastroProdutosComponent implements OnInit {
-  
+  ProdutoObserver: any;
+
   constructor(
     private router: Router,
-    private http: HttpClient,
     private routerParams: ActivatedRoute,
     private logadoService: LogadoService,
     private produtoObserver: ProdutoObserver
-  ) { }
-
-  private produtoServico: ProdutoServico = {} as ProdutoServico;
-  public produtos: Produto[] = []
-  public produto: Produto = {} as Produto
-  ProdutoObserver: any;
+  ) {}
 
   ngOnInit(): void {
-    if (this.logadoService.redirecionaLoginNaoLogado()) return
+    if (this.logadoService.redirecionaLoginNaoLogado()) return;
 
-    this.produtoServico = new ProdutoServico(this.http)
+    this.produtoServico = new ProdutoServico(this.http);
 
-    let id: Number = this.routerParams.snapshot.params['id']
-    console.log(id)
+    let id: Number = this.routerParams.snapshot.params['id'];
+    console.log(id);
     if (id) {
-      this.editaProduto(id)
+      this.editaProduto(id);
     }
 
-    this.produto = {} as Produto
+    this.produto = {} as Produto;
   }
 
   private async editaProduto(id: Number) {
-    let produtoEdit = await this.produtoServico.buscaPorId(id)
+    let produtoEdit = await this.produtoServico.buscaPorId(id);
     if (produtoEdit) {
-      this.produto = produtoEdit
+      this.produto = produtoEdit;
     }
   }
 
+  public produtos: Produto[] = ProdutoServico.buscaProduto();
+  public produto: Produto = {} as Produto;
+
   salvarProduto() {
-    if (this.produto && this.produto.id > 0) {
-      this.produtoServico.update(this.produto)
+    if (this.produto.id > 0) {
+      ProdutoServico.alteraProduto(this.produto);
     } else {
-
-      let nome = this.produto?.nome
-      let descricao = ""
-      let valor = 0
-      let qtd_estoque = 0
-
-      if (this.produto) {
-        descricao = this.produto.descricao.toString()
-        valor = Number(this.produto.valor)
-        qtd_estoque = Number(this.produto.qtd_estoque)
-      }
-
-      this.produtoServico.criar({
-        id: 0,
-        nome: nome,
-        descricao: descricao,
-        valor: valor,
-        qtd_estoque: qtd_estoque,
+      ProdutoServico.adicionaProduto({
+        id: this.produto.id,
+        nome: this.produto.nome,
+        descricao: this.produto.descricao,
+        valor: this.produto.valor,
+        qtd_estoque: this.produto.qtd_estoque,
       });
     }
 
-    this.produtoObserver.atualizaEstoque()
-    this.router.navigateByUrl("/lista-produtos")
+    this.produtoObserver.atualizaEstoque();
+    this.router.navigateByUrl('/lista-produtos');
   }
-
 }

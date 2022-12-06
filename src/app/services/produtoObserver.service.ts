@@ -1,4 +1,3 @@
-import { HttpClient } from "@angular/common/http"
 import { Injectable } from "@angular/core"
 import { ProdutoServico } from "./produtoServico"
 
@@ -7,17 +6,16 @@ import { ProdutoServico } from "./produtoServico"
 })
 
 export class ProdutoObserver {
-
-    constructor(private http: HttpClient) {
+    
+    constructor() { 
         this.atualizaEstoque()
     }
 
-
+    
     public quantidadeProduto: Number = 0
 
-    async atualizaEstoque() {
-        let lista = await new ProdutoServico(this.http).lista();
-        this.quantidadeProduto = lista ? lista.length : 0;
+    atualizaEstoque(){
+        this.quantidadeProduto = ProdutoServico.buscaProduto().length
     }
 
 }
