@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { ListaClientesComponent } from './paginas/lista-clientes/lista-clientes.component';
 import { ListaProdutosComponent } from './paginas/lista-produtos/lista-produtos.component';
 import { FooterComponent } from './componentes/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 registerLocaleData(ptBr)
@@ -35,7 +36,8 @@ registerLocaleData(ptBr)
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt'},
