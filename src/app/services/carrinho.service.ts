@@ -8,7 +8,6 @@ export class CarrinhoService {
 
   constructor() { 
     this.atualizaCarrinho
-
   }
 
   public quantidade:Number = 0

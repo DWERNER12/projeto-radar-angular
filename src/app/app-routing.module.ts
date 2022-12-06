@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CadastroClientesComponent } from './paginas/cadastro-clientes/cadastro-clientes.component';
+import { CadastroPedidosClientesComponent } from './paginas/cadastro-pedidos-clientes/cadastro-pedidos-clientes.component';
 import { CadastroProdutosComponent } from './paginas/cadastro-produtos/cadastro-produtos.component';
 import { HomeComponent } from './paginas/home/home.component';
 import { ListaClientesComponent } from './paginas/lista-clientes/lista-clientes.component';

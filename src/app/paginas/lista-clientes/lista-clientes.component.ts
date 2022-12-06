@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { Cliente } from 'src/app/interface/cliente';
+import { CarrinhoService } from 'src/app/services/carrinho.service';
 import { ClienteServico } from 'src/app/services/clienteServico';
 
 @Component({
@@ -13,6 +14,7 @@ export class ListaClientesComponent implements OnInit {
 
   constructor(
     private router:Router,
+    public carrinhoService : CarrinhoService,
     private http:HttpClient,
     private cd: ChangeDetectorRef
   ) { }

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Produto } from 'src/app/interface/produto';
+import { CarrinhoService } from 'src/app/services/carrinho.service';
 import { LogadoService } from 'src/app/services/logado.service';
 import { ProdutoObserver } from 'src/app/services/produtoObserver.service';
 import { ProdutoServico } from 'src/app/services/produtoServico';
@@ -18,7 +19,8 @@ export class CadastroProdutosComponent implements OnInit {
     private http: HttpClient,
     private routerParams: ActivatedRoute,
     private logadoService: LogadoService,
-    private produtoObserver: ProdutoObserver
+    private produtoObserver: ProdutoObserver,
+    public carrinhoService : CarrinhoService
   ) { }
 
   private produtoServico: ProdutoServico = {} as ProdutoServico;
@@ -27,6 +29,7 @@ export class CadastroProdutosComponent implements OnInit {
   ProdutoObserver: any;
 
   ngOnInit(): void {
+
     if (this.logadoService.redirecionaLoginNaoLogado()) return
 
     this.produtoServico = new ProdutoServico(this.http)
@@ -36,10 +39,8 @@ export class CadastroProdutosComponent implements OnInit {
     if (id) {
       this.editaProduto(id)
     }
-
     this.produto = {} as Produto
   }
-
   private async editaProduto(id: Number) {
     let produtoEdit = await this.produtoServico.buscaPorId(id)
     if (produtoEdit) {

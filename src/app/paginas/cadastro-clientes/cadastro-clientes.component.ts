@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from 'src/app/interface/cliente';
+import { CarrinhoService } from 'src/app/services/carrinho.service';
 import { ClienteServico } from 'src/app/services/clienteServico';
 import { LogadoService } from 'src/app/services/logado.service';
 
@@ -17,26 +18,26 @@ export class CadastroClientesComponent implements OnInit {
     private http: HttpClient,
     private routerParams: ActivatedRoute,
     private logadoService: LogadoService,
-  ) { }
+    public carrinhoService : CarrinhoService
+    ) { }
 
   private clienteServico: ClienteServico = {} as ClienteServico
   public clientes: Cliente[] = ClienteServico.buscaClientes()
   public cliente: Cliente = {} as Cliente
 
   ngOnInit(): void {
+
     if (this.logadoService.redirecionaLoginNaoLogado()) return
-
     this.clienteServico = new ClienteServico(this.http)
-
     let id: Number = this.routerParams.snapshot.params['id']
     if (id) {
       this.cliente = ClienteServico.buscaClienteId(id)
     }
-
   }
 
-  salvarCliente() {
-    if (this.cliente.id > 0) {
+  salvarCliente() { 
+    if(this.cliente.id && this.cliente.id > 0){
+
       ClienteServico.alteraCliente(this.cliente)
     }
     else {
