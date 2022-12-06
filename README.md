@@ -81,3 +81,6 @@ O sistema será desenvolvido em Angular <🅰️> com as seguintes funcionalidad
 - [Kenps Rossi](https://www.linkedin.com/in/kenps-adv-dev/) 👨🏻‍💻;
 - [Leanderson Dias de Lima](https://www.linkedin.com/in/leanderson-dias-de-lima/) 👨🏾‍💻;
 - [Rômulo Dias](https://www.linkedin.com/in/romulondias/) 👨🏻‍💻.
+
+
+

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { Cliente } from 'src/app/interface/cliente';
+import { CarrinhoService } from 'src/app/services/carrinho.service';
 import { ClienteServico } from 'src/app/services/clienteServico';
 
 @Component({
@@ -11,7 +12,8 @@ import { ClienteServico } from 'src/app/services/clienteServico';
 export class ListaClientesComponent implements OnInit {
 
   constructor(
-    
+    private router:Router,
+    public carrinhoService : CarrinhoService,
   ) { }
 
   ngOnInit(): void {
@@ -22,6 +24,14 @@ export class ListaClientesComponent implements OnInit {
   excluir(cliente:Cliente){
     ClienteServico.excluirCliente(cliente)
     this.clientes = ClienteServico.buscaClientes()
+  }
+
+  novoCliente(){
+    this.router.navigateByUrl("/cadastro-cliente")
+  }
+
+  selecionaCliente(){
+    
   }
 
 }

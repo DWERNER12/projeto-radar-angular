@@ -1,1 +1,40 @@
-<p>login works!</p>
+<section class="vh-100" style="background-color: #b8d2e4;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-xl-10">
+          <div class="card" style="border-radius: 1rem;">
+            <div class="row g-0">
+              <div class="col-md-6 col-lg-5 d-none d-md-block">
+                <img src="https://cdn.discordapp.com/attachments/1045831985039417404/1049512545498701874/logo_radar_c_fundo.png"
+                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+              </div>
+              <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                <div class="card-body p-4 p-lg-5 text-black">
+  
+                    <form id="contactForm">
+                        
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="nome" name="nome" type="text" [(ngModel)]="email" placeholder="Digite o seu nome...">
+                            <label for="nome">Email</label>
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="endereco" name="endereco" type="password" [(ngModel)]="senha" placeholder="Digite seu endereço">
+                            <label for="email">Senha</label>
+                        </div>
+    
+                        <div *ngIf="mensagem" class="alert alert-danger" role="alert">
+                            {{mensagem}}
+                        </div>    
+    
+                        <button class="btn btn-primary btn-xl" id="submitButton" type="button" (click)="logar()">Enviar</button>
+                    </form>
+  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
