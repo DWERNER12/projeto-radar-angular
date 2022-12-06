@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Produto } from 'src/app/interface/produto';
 import { ProdutoObserver } from 'src/app/services/produtoObserver.service';
 import { ProdutoServico } from 'src/app/services/produtoServico';
@@ -18,7 +18,8 @@ export class ListaProdutosComponent implements OnInit {
     public carrinhoService: CarrinhoService,
     private router: Router,
     private http: HttpClient,
-    public produtoObserver: ProdutoObserver
+    public produtoObserver: ProdutoObserver,
+    private cd: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -35,8 +36,9 @@ export class ListaProdutosComponent implements OnInit {
 
   async excluirProduto(produto: Produto) {
     await this.produtoServico.excluirPorId(produto.id)
-    this.produtos = await this.produtoServico.lista()
-    this.produtoObserver.atualizaEstoque()
+    this.listaProdutos()
+    //this.produtoObserver.atualizaEstoque()
+    this.cd.detectChanges()
   }
 
   novoProduto() {

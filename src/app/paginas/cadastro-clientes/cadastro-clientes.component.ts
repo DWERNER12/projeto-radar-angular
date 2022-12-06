@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from 'src/app/interface/cliente';
@@ -13,15 +14,19 @@ export class CadastroClientesComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private http: HttpClient,
     private routerParams: ActivatedRoute,
     private logadoService: LogadoService,
   ) { }
-  
+
+  private clienteServico: ClienteServico = {} as ClienteServico
   public clientes: Cliente[] = ClienteServico.buscaClientes()
   public cliente: Cliente = {} as Cliente
 
   ngOnInit(): void {
     if (this.logadoService.redirecionaLoginNaoLogado()) return
+
+    this.clienteServico = new ClienteServico(this.http)
 
     let id: Number = this.routerParams.snapshot.params['id']
     if (id) {
@@ -29,13 +34,14 @@ export class CadastroClientesComponent implements OnInit {
     }
 
   }
-  
+
   salvarCliente() {
     if (this.cliente.id > 0) {
       ClienteServico.alteraCliente(this.cliente)
     }
     else {
-      ClienteServico.adicionaCliente({
+
+      this.clienteServico.criar({
         id: this.cliente.id,
         nome: this.cliente.nome,
         telefone: this.cliente.telefone,

@@ -74,6 +74,7 @@ export class ClienteServico {
         }
     }
 
+    // me delete depois
     public static excluirCliente(cliente:Cliente):void{
         let listaNova = []
         for(let i=0; i<ClienteServico.clientes.length; i++){
@@ -86,6 +87,14 @@ export class ClienteServico {
         ClienteServico.clientes = listaNova
     }
 
+    public excluirPorId(id:Number){
+        firstValueFrom(this.http.delete(`${environment.api}/clientes/${id}`))
+    }
+
+    public async criar(cliente:Cliente): Promise<Cliente | undefined> {
+        let clienteRest: Cliente | undefined = await firstValueFrom(this.http.post<Cliente>(`${environment.api}/clientes/`, cliente))
+        return clienteRest;
+     }
 
 
 }
