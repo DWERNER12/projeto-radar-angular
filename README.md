@@ -19,7 +19,7 @@ O sistema será desenvolvido em Angular <🅰️> com as seguintes funcionalidad
 
 ● Página de fluxo de caixa, mostrando a movimentação do mês.
 
-## Campos exigidos para as entidades:
+## Campos exigidos para as entidades 📜
 
 ● Produtos (id, nome, descricao, valor, qtd_estoque);
 
@@ -29,7 +29,7 @@ O sistema será desenvolvido em Angular <🅰️> com as seguintes funcionalidad
 
 ● PedidosProdutos (id, pedido_id, produto_id, valor, quantidade).
 
-## Tecnologias Utilizadas
+## Tecnologias Utilizadas 🕹️
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" width="100px">
 
@@ -48,7 +48,7 @@ O sistema será desenvolvido em Angular <🅰️> com as seguintes funcionalidad
 <img src="https://user-images.githubusercontent.com/87840459/204098352-fa8ae8e5-564a-4eb4-94a1-7a6d35600301.GIF" width="310px">
 
 
-## Organização do Projeto
+## Organização do Projeto 📈
 - Elaboramos o kanban utilizando o Trello;
 - Criamos o backlog;
 - Detalhamos o descritivo das tarefas da squad dentro dos seus cards;
@@ -57,7 +57,7 @@ O sistema será desenvolvido em Angular <🅰️> com as seguintes funcionalidad
 - Definimos cada responsável pelo card ou checklist de completude;
 - Priorizamos os cards através de etiquetas coloridas que definiam níveis de dificuldade e níveis de prioridade.
 
-## Critérios de Avaliação
+## Critérios de Avaliação 📊
 - Organização do projeto (Kanban no Trello, Jira ou outra ferramenta);
 - API básica em Node.js;
 - Beleza e fluidez do layout:
@@ -73,11 +73,14 @@ O sistema será desenvolvido em Angular <🅰️> com as seguintes funcionalidad
 ## Link do Repositório Original 💼
 [https://github.com/DWERNER12/projeto-radar-angular]()
 
-## Integrantes do Grupo 5 - Avengers 
+## Integrantes do Grupo 5 - Avengers 💻
 
 - [Daniele Santana](https://www.linkedin.com/in/daniele-santana-8479a9224/) 👩🏼‍💻;
 - [David Wermer](https://www.linkedin.com/in/david-werner-677116113/) 👨🏻‍💻;
 - [Diego Oliveira](https://www.linkedin.com/in/diego-oliveira-95344b33/) 👨‍💻;
-- [Leanderson Dias de Lima](https://www.linkedin.com/in/leanderson-dias-de-lima/) 👨🏾‍💻.
+- [Kenps Rossi](https://www.linkedin.com/in/kenps-adv-dev/) 👨🏻‍💻;
+- [Leanderson Dias de Lima](https://www.linkedin.com/in/leanderson-dias-de-lima/) 👨🏾‍💻;
+- [Rômulo Dias](https://www.linkedin.com/in/romulondias/) 👨🏻‍💻.
+
 
 
