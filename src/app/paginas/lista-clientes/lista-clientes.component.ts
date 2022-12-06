@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { Cliente } from 'src/app/interface/cliente';
 import { CarrinhoService } from 'src/app/services/carrinho.service';
@@ -14,16 +15,27 @@ export class ListaClientesComponent implements OnInit {
   constructor(
     private router:Router,
     public carrinhoService : CarrinhoService,
+    private http:HttpClient,
+    private cd: ChangeDetectorRef
   ) { }
 
+  private clienteService: ClienteServico = {} as ClienteServico
+
   ngOnInit(): void {
+    this.clienteService = new ClienteServico(this.http)
+    this.listaClientes()
   }
 
-  public clientes:Cliente[] = ClienteServico.buscaClientes()
+  public clientes:Cliente[] | undefined = []
+
+  private async listaClientes(){
+    this.clientes = await new ClienteServico(this.http).lista();
+  }
 
   excluir(cliente:Cliente){
-    ClienteServico.excluirCliente(cliente)
-    this.clientes = ClienteServico.buscaClientes()
+    this.clienteService.excluirPorId(cliente.id)
+    this.listaClientes()
+    this.cd.detectChanges()
   }
 
   novoCliente(){
@@ -31,7 +43,7 @@ export class ListaClientesComponent implements OnInit {
   }
 
   selecionaCliente(){
-    
+    // TODO
   }
 
 }
