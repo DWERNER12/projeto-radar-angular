@@ -16,7 +16,6 @@ import { FormsModule } from '@angular/forms';
 import { ListaClientesComponent } from './paginas/lista-clientes/lista-clientes.component';
 import { ListaProdutosComponent } from './paginas/lista-produtos/lista-produtos.component';
 import { FooterComponent } from './componentes/footer/footer.component';
-import { CarrinhoNotificacaoComponent } from './componentes/carrinho-notificacao/carrinho-notificacao.component';
 
 
 registerLocaleData(ptBr)
@@ -32,8 +31,7 @@ registerLocaleData(ptBr)
     LoginComponent,
     ListaClientesComponent,
     ListaProdutosComponent,
-    FooterComponent,
-    CarrinhoNotificacaoComponent
+    FooterComponent
   ],
   imports: [
     BrowserModule,
