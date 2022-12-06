@@ -20,8 +20,8 @@
                 <path
                   fill="currentColor"
                   d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 64C238.3 64 224 78.33 224 96C224 113.7 238.3 128 256 128C273.7 128 288 113.7 288 96C288 78.33 273.7 64 256 64zM256 416C291.3 416 320 387.3 320 352C320 334.6 313.1 318.9 301.9 307.4L365.1 161.7C371.3 149.5 365.8 135.4 353.7 130C341.5 124.7 327.4 130.2 322 142.3L257.9 288C257.3 288 256.6 287.1 256 287.1C220.7 287.1 192 316.7 192 352C192 387.3 220.7 416 256 416V416zM144 112C126.3 112 112 126.3 112 144C112 161.7 126.3 176 144 176C161.7 176 176 161.7 176 144C176 126.3 161.7 112 144 112zM96 288C113.7 288 128 273.7 128 256C128 238.3 113.7 224 96 224C78.33 224 64 238.3 64 256C64 273.7 78.33 288 96 288zM416 224C398.3 224 384 238.3 384 256C384 273.7 398.3 288 416 288C433.7 288 448 273.7 448 256C448 238.3 433.7 224 416 224z"
-                ></path></svg
-              ><!-- <i class="fas fa-tachometer-alt"></i> Font Awesome fontawesome.com -->
+                ></path></svg>
+              <!-- <i class="fas fa-tachometer-alt"></i> Font Awesome fontawesome.com -->
             </div>
             Fluxo de Caixa
           </a>
@@ -106,8 +106,8 @@
                 <path
                   fill="currentColor"
                   d="M144.3 32.04C106.9 31.29 63.7 41.44 18.6 61.29c-11.42 5.026-18.6 16.67-18.6 29.15l0 357.6c0 11.55 11.99 19.55 22.45 14.65c126.3-59.14 219.8 11 223.8 14.01C249.1 478.9 252.5 480 256 480c12.4 0 16-11.38 16-15.98V80.04c0-5.203-2.531-10.08-6.781-13.08C263.3 65.58 216.7 33.35 144.3 32.04zM557.4 61.29c-45.11-19.79-88.48-29.61-125.7-29.26c-72.44 1.312-118.1 33.55-120.9 34.92C306.5 69.96 304 74.83 304 80.04v383.1C304 468.4 307.5 480 320 480c3.484 0 6.938-1.125 9.781-3.328c3.925-3.018 97.44-73.16 223.8-14c10.46 4.896 22.45-3.105 22.45-14.65l.0001-357.6C575.1 77.97 568.8 66.31 557.4 61.29z"
-                ></path></svg
-              ><!-- <i class="fas fa-book-open"></i> Font Awesome fontawesome.com -->
+                ></path></svg>
+              <!-- <i class="fas fa-book-open"></i> Font Awesome fontawesome.com -->
             </div>
             Pages
             <div class="sb-sidenav-collapse-arrow">
@@ -177,7 +177,7 @@
         <!--Conteudo-->
           <h1 class="mt-4">
             Produtos Cadastrados
-            <button *ngIf="produtos.length == 0" class="btn btn-success" (click)="novoProduto()">
+            <button *ngIf="produtos?.length == 0" class="btn btn-success" (click)="novoProduto()">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
               </svg>
@@ -194,7 +194,7 @@
                 </div>
               </div>
             </div>
-            <table class="table table-bordered" *ngIf="produtos.length > 0">
+            <table class="table table-bordered" *ngIf="produtos && produtos.length > 0">
               <thead>
                 <tr>
                   <th scope="col">Codigo</th>

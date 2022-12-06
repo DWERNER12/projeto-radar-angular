@@ -5,6 +5,7 @@ import { ProdutoServico } from 'src/app/services/produtoServico';
 import { Router } from '@angular/router';
 import { PedidoServico } from 'src/app/services/pedidoServico';
 import { CarrinhoService } from 'src/app/services/carrinho.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-lista-produtos',
@@ -12,29 +13,37 @@ import { CarrinhoService } from 'src/app/services/carrinho.service';
   styleUrls: ['./lista-produtos.component.css']
 })
 export class ListaProdutosComponent implements OnInit {
-  
+
   constructor(
-    public carrinhoService:CarrinhoService,
-    private router:Router,
+    public carrinhoService: CarrinhoService,
+    private router: Router,
+    private http: HttpClient,
     public produtoObserver: ProdutoObserver
   ) { }
 
   ngOnInit(): void {
+    this.produtoServico = new ProdutoServico(this.http)
+    this.listaProdutos()
   }
 
-  public produtos:Produto[] = ProdutoServico.buscaProduto()
+  private produtoServico: ProdutoServico = {} as ProdutoServico
+  public produtos: Produto[] | undefined = []
 
-  excluirProduto(produto:Produto){
-    ProdutoServico.excluirProdutos(produto)
-    this.produtos = ProdutoServico.buscaProduto()
+  private async listaProdutos() {
+    this.produtos = await this.produtoServico.lista();
+  }
+
+  async excluirProduto(produto: Produto) {
+    await this.produtoServico.excluirPorId(produto.id)
+    this.produtos = await this.produtoServico.lista()
     this.produtoObserver.atualizaEstoque()
   }
 
-  novoProduto(){
+  novoProduto() {
     this.router.navigateByUrl("/cadastro-produto")
   }
 
-  addCarrinho(produto:Produto){
+  addCarrinho(produto: Produto) {
     PedidoServico.get().idCliente = 1
     PedidoServico.get().itens.push(produto)
     this.carrinhoService.atualizaCarrinho()
