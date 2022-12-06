@@ -8,18 +8,14 @@ import { Router } from '@angular/router';
 export class LogadoService {
 
   constructor(private router:Router) { 
-    this.notificar()
+    this.verificaLogado()
   }
 
   public logado:boolean = false
 
   public verificaLogado():boolean{
-    this.notificar
+    this.logado = localStorage.getItem("logado") ? true : false
     return this.logado
-  }
-
-  public notificar(){
-    this.logado =localStorage.getItem("logado") ? true : false
   }
 
   public deslogar(){

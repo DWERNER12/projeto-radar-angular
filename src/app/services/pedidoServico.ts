@@ -8,11 +8,9 @@ export class PedidoServico{
         }
 
         return PedidoServico.pedido
-
     }
 
     public static buscaPedidoId():Pedido{
         return PedidoServico.pedido
     }
 }
-

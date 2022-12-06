@@ -1,41 +1,8 @@
 import { Cliente } from "../interface/cliente";
-import { HttpClient } from '@angular/common/http';
-import { environment } from "src/environments/environment";
-import { firstValueFrom } from "rxjs";
+
 
 export class ClienteServico {
-
-    constructor(private http:HttpClient) { }
-
-        public async lista(): Promise<Cliente[] | undefined> {
-            let clientes: Cliente[] | undefined = await firstValueFrom(this.http.get<Cliente[]>(`${environment.api}/clientes`))
-            return clientes;
-        }
-
-//recursos adicionais
-//====================================================================================================================
-       /* public async criar(cliente:Cliente): Promise<Cliente | undefined> {
-           let clienteRest: Cliente | undefined = await firstValueFrom(this.http.post<Cliente>(`${environment.api}/clientes/`, cliente))
-           return clienteRest;
-        }
-        
-        public async update(cliente:Cliente): Promise<Cliente | undefined> {
-            let clienteRest: Cliente | undefined = await firstValueFrom(this.http.put<Cliente>(`${environment.api}/clientes/${cliente.id}`, cliente))
-            return clienteRest;
-        }
-
-        public async buscaPorId(id:Number): Promise<Cliente | undefined> {
-           return await  firstValueFrom(this.http.get<Cliente | undefined>(`${environment.api}/clientes/${id}`))
-        }
-
-
-        public excluirPorId(id:Number){
-            firstValueFrom(this.http.delete(`${environment.api}/clientes/${id}`))
-        }
-
-        
-}*/
-
+   
     static buscaClienteId (id: Number): Cliente {
         let cliente:Cliente = {} as Cliente
 
@@ -74,7 +41,6 @@ export class ClienteServico {
         }
     }
 
-    // me delete depois
     public static excluirCliente(cliente:Cliente):void{
         let listaNova = []
         for(let i=0; i<ClienteServico.clientes.length; i++){
@@ -87,14 +53,6 @@ export class ClienteServico {
         ClienteServico.clientes = listaNova
     }
 
-    public excluirPorId(id:Number){
-        firstValueFrom(this.http.delete(`${environment.api}/clientes/${id}`))
-    }
-
-    public async criar(cliente:Cliente): Promise<Cliente | undefined> {
-        let clienteRest: Cliente | undefined = await firstValueFrom(this.http.post<Cliente>(`${environment.api}/clientes/`, cliente))
-        return clienteRest;
-     }
 
 
 }
