@@ -5,9 +5,7 @@ import { ProdutoServico } from 'src/app/services/produtoServico';
 import { Router } from '@angular/router';
 import { PedidoServico } from 'src/app/services/pedidoServico';
 import { CarrinhoService } from 'src/app/services/carrinho.service';
-import { Pedido } from 'src/app/models/pedido';
 import { HttpClient } from '@angular/common/http';
-
 
 @Component({
   selector: 'app-lista-produtos',
@@ -25,13 +23,6 @@ export class ListaProdutosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-    this.pedido = PedidoServico.get()
-  }
-
-  public produtos:Produto[] = ProdutoServico.buscaProduto()
-  public pedido:Pedido = {} as Pedido
-
     this.produtoServico = new ProdutoServico(this.http)
     this.listaProdutos()
   }
