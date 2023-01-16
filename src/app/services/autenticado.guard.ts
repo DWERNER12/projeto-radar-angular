@@ -17,15 +17,15 @@ export class AutenticadoGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    //PROFESSOR
+      //PROFESSOR
       sessionStorage.setItem("urlAcessada", state.url)
       //======V
-//===========================A adicionado daqui
+      //===========================A adicionado daqui
       if(!this.logadoService.logado){
         this.router.navigateByUrl("/login")
         return false
       }
-//=======================V adicionado até aqui
+      //=======================V adicionado até aqui
     return true
   }
   
