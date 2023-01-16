@@ -16,7 +16,7 @@
                 Home
               </a>
               <hr>
-              <a class="nav-link" routerLink="">
+              <a class="nav-link" routerLink="/dashboard">
                 <div class="sb-nav-link-icon">
                   <svg
                     class="svg-inline--fa fa-gauge-high"
@@ -28,6 +28,7 @@
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 512 512"
                     data-fa-i2svg=""
+                    
                   >
                     <path
                       fill="currentColor"
@@ -45,6 +46,7 @@
                 data-bs-target="#collapseLayouts"
                 aria-expanded="false"
                 aria-controls="collapseLayouts"
+                
               >
                 <div class="sb-nav-link-icon">
                   <svg
@@ -186,13 +188,17 @@
         </nav>
       </div>
     <div id="layoutSidenav_content">
+      
       <main>
+        <router-outlet></router-outlet>
+
         <div>
           <div class="cantainer">
           </div>
         </div>
+        
       </main>
-<router-outlet></router-outlet>
+
 
     </div>
 

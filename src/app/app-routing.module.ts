@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CadastroClientesComponent } from './views/cadastro-clientes/cadastro-clientes.component';
 import { CadastroPedidosClientesComponent } from './views/cadastro-pedidos-clientes/cadastro-pedidos-clientes.component';
 import { CadastroProdutosComponent } from './views/cadastro-produtos/cadastro-produtos.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
  {path: 'lista-produtos', component:ListaProdutosComponent},
  {path: 'altera-produto/:id', component:CadastroProdutosComponent},
  {path: 'pedidos', component:CadastroPedidosClientesComponent},
+ {path: 'dashboard', component:DashboardComponent }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
