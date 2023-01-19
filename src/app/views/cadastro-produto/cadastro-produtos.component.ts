@@ -1,10 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Produto } from 'src/app/interface/produto';
-import { CarrinhoService } from 'src/app/services/carrinho.service';
+import { Produto } from 'src/app/models/modeloProduto';
 import { LogadoService } from 'src/app/services/logado.service';
-import { ProdutoObserver } from 'src/app/services/produtoObserver.service';
-import { ProdutoServico } from 'src/app/services/produtoServico';
+import { ProdutoServico } from 'src/app/services/servicesProdutos/produtoServico';
 
 @Component({
   selector: 'app-cadastro-produtos',
@@ -12,46 +11,51 @@ import { ProdutoServico } from 'src/app/services/produtoServico';
   styleUrls: ['./cadastro-produtos.component.css']
 })
 export class CadastroProdutosComponent implements OnInit {
-  ProdutoObserver: any;
-
-  constructor(
+  
+  constructor( 
     private router:Router,
+    private http:HttpClient,
     private routerParams: ActivatedRoute,
-    private logadoService: LogadoService,
-    private produtoObserver: ProdutoObserver,
-    public carrinhoService : CarrinhoService
-  ) { }
+    ) { }
+
+    
+  private produtoServico:ProdutoServico = {} as ProdutoServico
+  public titulo:String = "Novo Produto"
+  public produto:Produto | undefined = {} as Produto
 
   ngOnInit(): void {
-    if(this.logadoService.redirecionaLoginNaoLogado()) return
+    this.produtoServico = new ProdutoServico(this.http)
     let id:Number = this.routerParams.snapshot.params['id']
     if(id){
-      
-      this.produto = ProdutoServico.buscaProdutoId(id)
-      
+      this.editaProduto(id)
     }
   }
-  
-  public produtos:Produto[] = ProdutoServico.buscaProduto()
-  public produto:Produto = {} as Produto
-  
 
-  salvarProduto() {
-    if(this.produto.id > 0){
-      ProdutoServico.alteraProduto(this.produto)
-    } else {
-      ProdutoServico.adicionaProduto({
-        id: this.produto.id,
-        nome: this.produto.nome,
-        descricao: this.produto.descricao,
-        valor: this.produto.valor,
-        qtd_estoque: this.produto.qtd_estoque
-      })
-      
-    }
-    
-    this.produtoObserver.atualizaEstoque()
-    this.router.navigateByUrl("/lista-produtos")
+  private async editaProduto(id: Number) {
+    this.titulo = "Editar Produto"
+    this.produto = await this.produtoServico.buscarProdutoPorId(id)
+    console.log(this.produto)
   }
+
+  salvar(){
+    if(this.produto && this.produto.id > 0){
+      this.produtoServico.editarProduto(this.produto)
+    }
+    else{
+      this.produtoServico.criarProduto({
+        id: 0, 
+        nome: this.produto?.nome,
+        desc: this.produto?.desc,
+        valor: this.produto?.valor,
+        qtdEstoque: this.produto?.qtdEstoque,
+      });
+    }
+    this.router.navigateByUrl("/produtos")
+  }
+
+
+  public cancelar():void{
+    this.router.navigateByUrl('/produtos');
+    }
 
 }

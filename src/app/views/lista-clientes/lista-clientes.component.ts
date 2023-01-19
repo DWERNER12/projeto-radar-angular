@@ -1,8 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
-import { Cliente } from 'src/app/interface/cliente';
-import { CarrinhoService } from 'src/app/services/carrinho.service';
-import { ClienteServico } from 'src/app/services/clienteServico';
+import { Router } from '@angular/router';
+import { Cliente } from 'src/app/models/modeloCliente';
+import { ClienteServico } from 'src/app/services/serviceClientes/clienteServico';
 
 @Component({
   selector: 'app-lista-clientes',
@@ -12,26 +12,29 @@ import { ClienteServico } from 'src/app/services/clienteServico';
 export class ListaClientesComponent implements OnInit {
 
   constructor(
+    private http:HttpClient,
     private router:Router,
-    public carrinhoService : CarrinhoService,
   ) { }
+   
+  private clienteServico:ClienteServico = {} as ClienteServico
+  public clientes:Cliente[] | undefined = []
+  
 
-  ngOnInit(): void {
+  ngOnInit(): void { //INICIANDO A LISTA DE CLIENTES COM O OBJETO CARREGADO DA API
+    this.clienteServico = new ClienteServico(this.http)
+    this.listaClientes()
   }
 
-  public clientes:Cliente[] = ClienteServico.buscaClientes()
-
-  excluir(cliente:Cliente){
-    ClienteServico.excluirCliente(cliente)
-    this.clientes = ClienteServico.buscaClientes()
+  private async listaClientes(){ //METODO QUE LISTA OS CLIENTES PEGANDO DA API JUNTO COM O 'CLIENTE SERVICO'
+   this.clientes = await this.clienteServico.listarClientes();
   }
 
   novoCliente(){
-    this.router.navigateByUrl("/cadastro-cliente")
+    this.router.navigateByUrl("clientes/novo")
   }
 
-  selecionaCliente(){
-    
+  editarCliente(id:Number){
+    this.router.navigateByUrl(`clientes/novo/${id}`)
   }
 
 }

@@ -13,10 +13,11 @@ import { ListaLojasComponent } from './views/lista-lojas/lista-lojas.component';
 import { ListaPedidosComponent } from './views/lista-pedidos/lista-pedidos.component';
 import { ListaProdutosComponent } from './views/lista-produtos/lista-produtos.component';
 import { LoginComponent } from './views/login/login.component';
+import { TesteComponent } from './views/teste/teste.component';
 
 const routes: Routes = [
- {path: '', component:HomeComponent},
  {path: 'login', component:LoginComponent},
+ {path: 'dashboard', component:DashboardComponent },
  {path: 'cadastro-cliente', component:CadastroClientesComponent},
  {path: 'lista-clientes', component:ListaClientesComponent},
  {path: 'altera-cliente/:id', component:CadastroClientesComponent},
@@ -27,9 +28,9 @@ const routes: Routes = [
  {path: 'lista-pedidos', component: ListaPedidosComponent},
  {path: 'lista-lojas', component: ListaLojasComponent},
  {path: 'lista-campanhas', component:ListaCampanhasComponent},
- {path: 'dashboard', component:DashboardComponent },
  {path: 'cadastro-lojas', component:CadastroLojasComponent},
- {path: 'cadastro-campanhas', component: CadastroCampanhasComponent}
+ {path: 'cadastro-campanhas', component: CadastroCampanhasComponent},
+ {path: 'teste', component: TesteComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

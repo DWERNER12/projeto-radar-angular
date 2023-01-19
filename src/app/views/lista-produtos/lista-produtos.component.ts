@@ -1,46 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import { Produto } from 'src/app/interface/produto';
-import { ProdutoObserver } from 'src/app/services/produtoObserver.service';
-import { ProdutoServico } from 'src/app/services/produtoServico';
 import { Router } from '@angular/router';
-import { PedidoServico } from 'src/app/services/pedidoServico';
-import { CarrinhoService } from 'src/app/services/carrinho.service';
-import { Pedido } from 'src/app/models/pedido';
+import { HttpClient } from '@angular/common/http';
+import { Produto } from 'src/app/models/modeloProduto';
+import { ProdutoServico } from 'src/app/services/servicesProdutos/produtoServico';
 
 @Component({
   selector: 'app-lista-produtos',
   templateUrl: './lista-produtos.component.html',
   styleUrls: ['./lista-produtos.component.css']
 })
+
 export class ListaProdutosComponent implements OnInit {
   
   constructor(
-    public carrinhoService:CarrinhoService,
+    private http:HttpClient,
     private router:Router,
-    public produtoObserver: ProdutoObserver
   ) { }
 
+  public produtos:Produto[] | undefined = []
+  private produtoServico:ProdutoServico = {} as ProdutoServico 
+
   ngOnInit(): void {
-    this.pedido = PedidoServico.get()
+    this.produtoServico = new ProdutoServico(this.http)
+    this.listaProdutos()
   }
 
-  public produtos:Produto[] = ProdutoServico.buscaProduto()
-  public pedido:Pedido = {} as Pedido
-
-  excluirProduto(produto:Produto){
-    ProdutoServico.excluirProdutos(produto)
-    this.produtos = ProdutoServico.buscaProduto()
-    this.produtoObserver.atualizaEstoque()
+  
+  private async listaProdutos(){ //METODO QUE LISTA OS PRODUTOS PEGANDO DA API JUNTO COM O 'PRODUTO SERVICO'
+    this.produtos = await this.produtoServico.listarProdutos();
   }
 
   novoProduto(){
-    this.router.navigateByUrl("/cadastro-produto")
+    this.router.navigateByUrl("produtos/novo")
   }
 
-  addCarrinho(produto:Produto){
-    PedidoServico.get().idCliente = 1
-    PedidoServico.get().itens.push(produto)
-    this.carrinhoService.atualizaCarrinho()
+  editarProduto(id:Number){
+    this.router.navigateByUrl(`produtos/novo/${id}`)
   }
 
 }

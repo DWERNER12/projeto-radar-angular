@@ -14,7 +14,7 @@
                   </h3>
                 </div>
                 <div class="card-body">
-                  <form>
+                  <form *ngIf="cliente">
                     <div class="row mb-3">
                       <div class="col-md-6">
                         <div class="form-floating mb-3 mb-md-0">
@@ -162,7 +162,7 @@
                     </div>
                     <div class="mt-4 mb-0">
                       <div class="d-grid">
-                        <button class="btn btn-primary btn-block" type="button" (click)="salvarCliente()">
+                        <button class="btn btn-primary btn-block" type="button" (click)="salvar()">
                           Salvar
                         </button>
                       </div>

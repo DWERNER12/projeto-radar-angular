@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CarrinhoService } from 'src/app/services/carrinho.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +8,6 @@ import { CarrinhoService } from 'src/app/services/carrinho.service';
 export class HomeComponent implements OnInit {
 
   constructor(
-    public carrinhoService : CarrinhoService
   ) { }
 
   ngOnInit(): void {

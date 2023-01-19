@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
 
+import { ListaClientesComponent } from './views/lista-clientes/lista-clientes.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './views/home/home.component';
@@ -12,7 +13,6 @@ import { CadastroClientesComponent } from './views/cadastro-cliente/cadastro-cli
 import { CadastroPedidosClientesComponent } from './views/cadastro-pedido-cliente/cadastro-pedidos-clientes.component';
 import { LoginComponent } from './views/login/login.component';
 import { FormsModule } from '@angular/forms';
-import { ListaClientesComponent } from './views/lista-clientes/lista-clientes.component';
 import { ListaProdutosComponent } from './views/lista-produtos/lista-produtos.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CarrinhoNotificacaoComponent } from './components/carrinho-notificacao/carrinho-notificacao.component';
@@ -23,6 +23,8 @@ import { CadastroCampanhasComponent } from './views/cadastro-campanha/cadastro-c
 import { ListaPedidosComponent } from './views/lista-pedidos/lista-pedidos.component';
 import { ListaLojasComponent } from './views/lista-lojas/lista-lojas.component';
 import { ListaCampanhasComponent } from './views/lista-campanhas/lista-campanhas.component';
+import { TesteComponent } from './views/teste/teste.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 registerLocaleData(ptBr)
@@ -36,22 +38,25 @@ registerLocaleData(ptBr)
     CadastroClientesComponent,
     CadastroPedidosClientesComponent,
     LoginComponent,
-    ListaClientesComponent,
     ListaProdutosComponent,
     FooterComponent,
-    CarrinhoNotificacaoComponent,
     DashboardComponent,
     CadastroLojasComponent,
     CadastroCampanhasComponent,
-    ListaPedidosComponent,
     ListaLojasComponent,
-    ListaCampanhasComponent
+    ListaCampanhasComponent,
+    ListaClientesComponent,
+    ListaPedidosComponent,
+    TesteComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    GoogleChartsModule
+    GoogleChartsModule,
+    HttpClientModule,
+
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt'},

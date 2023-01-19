@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CarrinhoService } from './services/carrinho.service';
 import { LogadoService } from './services/logado.service';
 
 @Component({
@@ -10,7 +9,6 @@ import { LogadoService } from './services/logado.service';
 export class AppComponent {
   title = 'radar';
   constructor(
-    public carrinhoService : CarrinhoService,
     public logadoService : LogadoService
   ) { }
   
