@@ -37,12 +37,12 @@ export class CadastroProdutosComponent implements OnInit {
     console.log(this.produto)
   }
 
-  salvar(){
+  async salvar(){
     if(this.produto && this.produto.id > 0){
-      this.produtoServico.editarProduto(this.produto)
+      await this.produtoServico.editarProduto(this.produto)
     }
     else{
-      this.produtoServico.criarProduto({
+      await this.produtoServico.criarProduto({
         id: 0, 
         nome: this.produto?.nome,
         descricao: this.produto?.descricao,
