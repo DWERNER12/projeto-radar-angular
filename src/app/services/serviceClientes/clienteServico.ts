@@ -9,7 +9,7 @@ export class ClienteServico{
     constructor(private http:HttpClient) { }
 
     public async listarClientes(): Promise<Cliente[] | undefined> {
-        let clientes:Cliente[] | undefined = await firstValueFrom(this.http.get<Cliente[]>(`${environment.API}/clientes`))
+        let clientes:Cliente[] | undefined = await firstValueFrom(this.http.get<Cliente[]>(`${environment.API}/clientes`));
         return clientes;
     }
 
