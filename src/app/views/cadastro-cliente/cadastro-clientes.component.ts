@@ -38,12 +38,12 @@ export class CadastroClientesComponent implements OnInit {
   }
  
 
-  salvar(){
+  async salvar(){
     if(this.cliente && this.cliente.id > 0){
-      this.clienteServico.editarCliente(this.cliente)
+      await this.clienteServico.editarCliente(this.cliente)
     }
     else{
-      this.clienteServico.criarCliente({
+      await this.clienteServico.criarCliente({
         id: 0, 
         nome: this.cliente?.nome ,
         telefone: this.cliente?.telefone,
@@ -58,10 +58,11 @@ export class CadastroClientesComponent implements OnInit {
         complemento: this.cliente?.complemento
       });
     }
-    this.router.navigateByUrl("/clientes")
+    this.router.navigateByUrl("/lista-clientes")
   }
 
   public cancelar():void{
-    this.router.navigateByUrl('/clientes');
-    }
+    this.router.navigateByUrl('/lista-clientes');
+  }
+
 }

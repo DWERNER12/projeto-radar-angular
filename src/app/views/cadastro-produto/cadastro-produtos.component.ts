@@ -45,17 +45,17 @@ export class CadastroProdutosComponent implements OnInit {
       this.produtoServico.criarProduto({
         id: 0, 
         nome: this.produto?.nome,
-        desc: this.produto?.desc,
+        descricao: this.produto?.descricao,
         valor: this.produto?.valor,
-        qtdEstoque: this.produto?.qtdEstoque,
+        qtd_Estoque: this.produto?.qtd_Estoque,
       });
     }
-    this.router.navigateByUrl("/produtos")
+    this.router.navigateByUrl("/lista-produtos")
   }
 
 
   public cancelar():void{
-    this.router.navigateByUrl('/produtos');
+    this.router.navigateByUrl('/lista-produtos');
     }
 
 }

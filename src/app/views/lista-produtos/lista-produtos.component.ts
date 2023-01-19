@@ -31,11 +31,18 @@ export class ListaProdutosComponent implements OnInit {
   }
 
   novoProduto(){
-    this.router.navigateByUrl("produtos/novo")
+    this.router.navigateByUrl("cadastro-produto")
   }
 
   editarProduto(id:Number){
-    this.router.navigateByUrl(`produtos/novo/${id}`)
+    this.router.navigateByUrl(`/cadastro-produto/${id}`)
   }
-
+  async deletar(id:Number){
+    await this.produtoServico.excluirProdutoPorId(id);
+    this.redirectIt('/lista-produtos')
+  }
+  public redirectIt(uri:string){
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+    this.router.navigate([uri]));
+ }
 }

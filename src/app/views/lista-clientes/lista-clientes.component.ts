@@ -30,11 +30,21 @@ export class ListaClientesComponent implements OnInit {
   }
 
   novoCliente(){
-    this.router.navigateByUrl("clientes/novo")
+    this.router.navigateByUrl("cadastro-cliente")
   }
 
   editarCliente(id:Number){
-    this.router.navigateByUrl(`clientes/novo/${id}`)
+    this.router.navigateByUrl(`/cadastro-cliente/${id}`)
   }
 
+  public async deletar(id:Number){
+    await this.clienteServico.excluirClientePorId(id);
+    //this.router.navigate('/lista-clientes');
+    this.redirectTo('/lista-clientes')
+
+  }
+  redirectTo(uri:string){
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+    this.router.navigate([uri]));
+ }
 }
