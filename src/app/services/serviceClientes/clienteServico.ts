@@ -32,8 +32,8 @@ export class ClienteServico{
         return await firstValueFrom(this.http.get<Cliente | undefined>(`${environment.API}/clientesCPF/${cpf}`))
     }
 
-    public excluirClientePorId(id:Number) {
-        firstValueFrom(this.http.delete(`${environment.API}/clientes/${id}`))
+    public async excluirClientePorId(id:Number) {
+        await firstValueFrom(this.http.delete(`${environment.API}/clientes/${id}`))
     }
     
     public async listarTamanhoClientes(): Promise<undefined> {

@@ -1,7 +1,7 @@
 export interface Produto{
     id:Number 
     nome:String | undefined
-    desc: String | undefined
+    descricao: String | undefined
     valor:number | undefined
-    qtdEstoque: number | undefined
+    qtd_Estoque: number | undefined
 }

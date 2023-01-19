@@ -48,14 +48,28 @@
                         type="text"
                         id="descricao"
                         name="descricao"
-                        [(ngModel)]="produto.desc"
+                        [(ngModel)]="produto.descricao"
                       />
                       <label for="descricao">Descrição</label>
+                    </div>
+
+                    <div class="form-floating">
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="qtd_Estoqu"
+                        name="qtd_Estoque"
+                        [(ngModel)]="produto.qtd_Estoque"
+                      />
+                      <label for="descricao">Qtd Estoque</label>
                     </div>
                     <div class="mt-4 mb-0">
                       <div class="d-grid">
                         <button class="btn btn-primary btn-block" type="button" (click)="salvar()">
                           Salvar
+                        </button>
+                        <button class="btn btn-primary btn-block" type="button" (click)="cancelar()">
+                          Cancelar
                         </button>
                       </div>
                     </div>
