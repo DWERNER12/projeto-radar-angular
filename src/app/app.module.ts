@@ -25,6 +25,7 @@ import { ListaLojasComponent } from './views/lista-lojas/lista-lojas.component';
 import { ListaCampanhasComponent } from './views/lista-campanhas/lista-campanhas.component';
 import { TesteComponent } from './views/teste/teste.component';
 import { HttpClientModule } from '@angular/common/http';
+import { GoogleMapsDemoModule } from './views/google-maps-demo/google-maps-demo.module';
 
 
 registerLocaleData(ptBr)
@@ -48,7 +49,6 @@ registerLocaleData(ptBr)
     ListaClientesComponent,
     ListaPedidosComponent,
     TesteComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -56,7 +56,7 @@ registerLocaleData(ptBr)
     FormsModule,
     GoogleChartsModule,
     HttpClientModule,
-
+    GoogleMapsDemoModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt'},

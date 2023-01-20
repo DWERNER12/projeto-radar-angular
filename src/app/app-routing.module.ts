@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CadastroCampanhasComponent } from './views/cadastro-campanha/cadastro-campanhas.component';
@@ -14,6 +14,7 @@ import { ListaPedidosComponent } from './views/lista-pedidos/lista-pedidos.compo
 import { ListaProdutosComponent } from './views/lista-produtos/lista-produtos.component';
 import { LoginComponent } from './views/login/login.component';
 import { TesteComponent } from './views/teste/teste.component';
+import { GoogleMapsDemoComponent } from './views/google-maps-demo/google-maps-demo.component';
 
 const routes: Routes = [
  {path: 'login', component:LoginComponent},
@@ -30,7 +31,8 @@ const routes: Routes = [
  {path: 'lista-campanhas', component:ListaCampanhasComponent},
  {path: 'cadastro-lojas', component:CadastroLojasComponent},
  {path: 'cadastro-campanhas', component: CadastroCampanhasComponent},
- {path: 'teste', component: TesteComponent}
+ {path: 'teste', component: TesteComponent},
+ {path: 'lojas-maps', component: GoogleMapsDemoComponent},
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
