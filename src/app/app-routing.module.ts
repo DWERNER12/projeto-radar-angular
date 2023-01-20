@@ -27,7 +27,7 @@ const routes: Routes = [
  {path: 'cadastro-produto/:id', component:CadastroProdutosComponent},
  {path: 'cadastro-pedidos', component:CadastroPedidosClientesComponent},
  {path: 'lista-pedidos', component: ListaPedidosComponent},
- {path: 'lista-lojas', component: ListaLojasComponent},
+ {path: 'lista-lojas', component:  GoogleMapsDemoComponent},
  {path: 'lista-campanhas', component:ListaCampanhasComponent},
  {path: 'cadastro-lojas', component:CadastroLojasComponent},
  {path: 'cadastro-campanhas', component: CadastroCampanhasComponent},

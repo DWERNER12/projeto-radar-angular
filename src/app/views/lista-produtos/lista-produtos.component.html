@@ -15,15 +15,15 @@
           </h1>
           <hr>
         <div>
-          <div class="card-body">
+          <div class="card-body" >
             <div class="row justify-content-center">
               <div class="col-lg-8 col-xl-7">
-                <div *ngIf="produtos && produtos.length == 0" class="alert alert-danger" role="alert">
-                    Não existe produtos cadastrados!
+                <div *ngIf="produtos?.length == 0" class="alert alert-danger" role="alert">
+                    Não existem produtos cadastrados!
                 </div>
               </div>
             </div>
-            <table class="table table-bordered">
+            <table *ngIf="produtos && produtos.length > 0" class="table table-bordered">
               <thead>
                 <tr>
                   <th scope="col">Codigo</th>

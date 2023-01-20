@@ -20,13 +20,13 @@
           <div class="card-body">
             <div class="row justify-content-center">
               <div class="col-lg-8 col-xl-7">
-                <div  class="alert alert-danger" role="alert">
-                    Não existe clientes cadastrados!
+                <div *ngIf="clientes?.length == 0" class="alert alert-danger" role="alert">
+                    Não existem clientes cadastrados!
                 </div>
               </div>
             </div>
 
-            <table
+            <table *ngIf="clientes && clientes.length > 0"
               class="table table-bordered"
             >
               <thead>
