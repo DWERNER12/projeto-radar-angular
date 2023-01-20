@@ -1,6 +1,12 @@
 <h1 class="text-center">Mapa</h1>
 
 <div class="d-flex justify-content-center">
-    <google-map height="600px" width="950px" [center]="center" [zoom]="zoom">
+    <google-map height="600px" 
+                width="950px" 
+                [center]="center" 
+                [zoom]="zoom">
+        <map-marker #marker="mapMarker" 
+                    *ngFor="let markerPosition of markerPositions" 
+                    [position]="markerPosition"></map-marker>
     </google-map>
 </div>
