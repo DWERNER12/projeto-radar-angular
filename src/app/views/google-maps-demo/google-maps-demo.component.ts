@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { MapMarker } from '@angular/google-maps';
 
 @Component({
   selector: 'google-maps-demo',
@@ -22,5 +23,5 @@ export class GoogleMapsDemoComponent {
   zoom = 17;
   markerOptions: google.maps.MarkerOptions = {draggable: false};
   markerPositions: google.maps.LatLngLiteral[] = [{lat: -23.5566584, lng: -46.6612175}];
-
+  
 }
