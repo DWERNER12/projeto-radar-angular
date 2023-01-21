@@ -34,7 +34,7 @@ export class ListaPedidosComponent implements OnInit {
   }
 
   editarPedido(id:Number){
-    this.router.navigateByUrl(`pedidos/novo/${id}`)
+    this.router.navigateByUrl(`/cadastro-pedido/${id}`)
   }
 
   

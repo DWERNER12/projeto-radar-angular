@@ -23,7 +23,7 @@ export class PedidoProdutoServico{
         return pedidoProdutoRest;
     }
 
-    public async buscarPedidoProdutoPorId(id:Number): Promise<PedidoProduto | undefined> {
+    public async buscarPedidosProdutosPorId(id:Number): Promise<PedidoProduto | undefined> {
         return await firstValueFrom(this.http.get<PedidoProduto | undefined>(`${environment.API}/pedidosProdutos/${id}`))
     }
 
