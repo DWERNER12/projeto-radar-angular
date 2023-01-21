@@ -69,7 +69,7 @@ export class CadastroPedidosClientesComponent implements OnInit {
       this.atualiza = true
       this.editaPedido(id)
     }else{
-      this.pedidoForm.data = formatDate(new Date(), 'dd/MM/yyyy', 'pt');;
+      this.pedidoForm.data = formatDate(new Date(), 'YYYY-MM-dd','pt-Br');;
       console.log(this.pedidoForm.data)
       this.buscaTamanhoListaPedido()
     }
@@ -113,15 +113,18 @@ export class CadastroPedidosClientesComponent implements OnInit {
 
   private async editaPedido(id: Number) {
     this.titulo = "Ver Pedido"
+    debugger
     this.pedido = await this.pedidoServico.buscarPedidoPorId(id)
     this.valorPedidoTotal = this.pedido?.valor_Total
     this.produtos = await this.produtoServico.listarProdutos();
     if(this.pedido && this.pedido.cliente_Id) this.cliente = await this.clienteServico.buscarClientePorId(this.pedido.cliente_Id)
-    this.pedidoProduto = await this.pedidoProdutoServico.buscarPedidoProdutoPorId(id)
+    this.pedidoProduto = await this.pedidoProdutoServico.buscarPedidosProdutosPorId(id)
     if(this.cliente && this.cliente.cpf) {this.CPFCadastrado = true; this.CPFValido = true}
     else {this.CPFCadastrado  = false }
+
     console.log(this.pedidoProduto)
     console.log(this.produtos)
+
   }
 
   adicionarPedidoProduto(){
@@ -182,32 +185,30 @@ export class CadastroPedidosClientesComponent implements OnInit {
     
   }
 
-   salvar(){
+    async salvar(){
     if(this.pedido && this.pedido.id > 0){
       this.pedidoServico.editarPedido(this.pedido)
     }
     else{
       if(confirm("Finalizar Pedido?")){
 
-       this.pedidoServico.criarPedido({
+        await this.pedidoServico.criarPedido({
         id: 0, 
         cliente_Id: this.cliente?.id,
         valor_Total: this.valorPedidoTotal,
         data: this.pedidoForm.data,
       });
-
-      /*
+      
       for(let i=0;i<this.ListaProdFake.length;i++){
-         this.pedidoProdutoServico.criarPedidoProduto({
+        await this.pedidoProdutoServico.criarPedidoProduto({
             id: 0,
             pedido_Id: this.tamanhoPedido+1,
             produto_Id: this.ListaProdFake[i].idProd,
             quantidade: this.ListaProdFake[i].qtd,
             valor: this.ListaProdFake[i].valTotal
         });
-        
           for(let i=0;i<this.ListaProdFake.length;i++){
-               this.produtoServico.editarProduto({
+              await this.produtoServico.editarProduto({
                   id: this.ListaProdFake[i].idProd,
                   nome: this.ListaProdFake[i].nomeProd,
                   descricao: this.ListaProdFake[i].desc,
@@ -215,7 +216,7 @@ export class CadastroPedidosClientesComponent implements OnInit {
                   qtd_Estoque: (this.produtos[(this.ListaProdFake[i].idProd)-1].qtd_Estoque - this.ListaProdFake[i].qtd)
             });
           }
-      }*/
+      }
     }else return
 
     }

@@ -14,6 +14,7 @@ export class AuthService {
   }
 
   public async fazerLogin(login:Login): Promise<Logado | undefined> {
+   
     let loginRest:Logado | undefined = await firstValueFrom(this.http.post<Logado>(`${environment.API}/login/`, login))
 
     localStorage.setItem('usuarioLogado',loginRest.nome);

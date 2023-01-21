@@ -15,6 +15,7 @@ import { ListaProdutosComponent } from './views/lista-produtos/lista-produtos.co
 import { LoginComponent } from './views/login/login.component';
 import { TesteComponent } from './views/teste/teste.component';
 import { GoogleMapsDemoComponent } from './views/google-maps-demo/google-maps-demo.component';
+import { GoogleChartComponent } from 'angular-google-charts';
 
 const routes: Routes = [
  {path: 'login', component:LoginComponent},
@@ -26,8 +27,9 @@ const routes: Routes = [
  {path: 'lista-produtos', component:ListaProdutosComponent},
  {path: 'cadastro-produto/:id', component:CadastroProdutosComponent},
  {path: 'cadastro-pedido', component:CadastroPedidosClientesComponent},
+ {path: 'cadastro-pedido/:id', component:CadastroPedidosClientesComponent},
  {path: 'lista-pedidos', component: ListaPedidosComponent},
- {path: 'lista-lojas', component:  ListaLojasComponent},
+ {path: 'lista-lojas', component:  GoogleMapsDemoComponent},
  {path: 'lista-campanhas', component:ListaCampanhasComponent},
  {path: 'cadastro-loja', component:CadastroLojasComponent},
  {path: 'cadastro-campanhas', component: CadastroCampanhasComponent},
