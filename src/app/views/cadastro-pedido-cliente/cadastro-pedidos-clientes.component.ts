@@ -172,9 +172,7 @@ export class CadastroPedidosClientesComponent implements OnInit {
           }
         }
         this.validaEans = validaEan
-
       }
-
     }
     this.ListaProdFake = listaPedidoNova
   }

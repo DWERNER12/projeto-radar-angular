@@ -36,6 +36,7 @@ const routes: Routes = [
  {path: 'teste', component: TesteComponent},
  {path: 'lojas-maps', component: GoogleMapsDemoComponent},
 ];
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

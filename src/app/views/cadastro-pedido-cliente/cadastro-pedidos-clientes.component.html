@@ -130,6 +130,7 @@
         width="100%"
         cellspacing="0"
       >
+      
         <thead>
           <tr class="orange">
             <th>EAN</th> 
@@ -139,15 +140,17 @@
             <th>Valor</th>
           </tr>
         </thead>
+
         <tbody *ngIf="CPFCadastrado; else blocosenao">
           <tr *ngFor="let pedidosProdutos of pedidoProduto">
             <td>{{pedidosProdutos.produto_Id}}</td>
-            <td>{{produtos[(pedidosProdutos.pedido_Id)-1].nome}}</td>
+            <td>{{produtos[(pedidosProdutos.produto_Id)-1].nome}}</td>
             <td>{{produtos[(pedidosProdutos.produto_Id)-1].descricao}}</td>
             <td>{{pedidosProdutos.quantidade}}</td>
             <td>{{pedidosProdutos.valor | currency:'BRL':'symbol':'1.2-2'}}</td>
           </tr>
         </tbody>
+
         <ng-template #blocosenao>
           <tr *ngFor="let pedidoFake of ListaProdFake">
             <td>{{pedidoFake.idProd}}</td>
@@ -162,6 +165,7 @@
             </td>
           </tr>
         </ng-template>
+
    </table>
    
 
