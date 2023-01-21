@@ -30,7 +30,7 @@ export class ListaPedidosComponent implements OnInit {
     }
 
   novoPedido(){
-    this.router.navigateByUrl("pedidos/novo")
+    this.router.navigateByUrl("/cadastro-pedido")
   }
 
   editarPedido(id:Number){

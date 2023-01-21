@@ -26,6 +26,7 @@ import { ListaCampanhasComponent } from './views/lista-campanhas/lista-campanhas
 import { TesteComponent } from './views/teste/teste.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GoogleMapsDemoModule } from './views/google-maps-demo/google-maps-demo.module';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 registerLocaleData(ptBr)
@@ -56,7 +57,8 @@ registerLocaleData(ptBr)
     FormsModule,
     GoogleChartsModule,
     HttpClientModule,
-    GoogleMapsDemoModule
+    GoogleMapsDemoModule,
+    DragDropModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt'},

@@ -1,8 +1,7 @@
 export interface PedidoProduto{
     id:Number 
-    idPedido:Number | undefined
-    idProduto: Number | undefined 
-    qtd: Number | undefined
-    valorTotal: Number | undefined
+    pedido_Id:Number | undefined
+    produto_Id: Number | undefined 
+    quantidade: Number | undefined
+    valor: Number | undefined
 }
-

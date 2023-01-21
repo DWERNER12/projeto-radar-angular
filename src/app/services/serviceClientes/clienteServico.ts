@@ -29,7 +29,7 @@ export class ClienteServico{
     }
 
     public async buscarClientePorCPF(cpf:string): Promise<Cliente | undefined> {
-        return await firstValueFrom(this.http.get<Cliente | undefined>(`${environment.API}/clientesCPF/${cpf}`))
+        return await firstValueFrom(this.http.get<Cliente | undefined>(`${environment.API}/clientes/cpf/${cpf}`))
     }
 
     public async excluirClientePorId(id:Number) {
