@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LogadoService } from 'src/app/services/logado.service';
+
 
 @Component({
   selector: 'app-header',
@@ -8,9 +8,7 @@ import { LogadoService } from 'src/app/services/logado.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(
-    public logadoService:LogadoService
-    ) { }
+  constructor() { }
      
   ngOnInit(): void {
   }

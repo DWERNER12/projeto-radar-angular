@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from 'src/app/models/modeloCliente';
-import { LogadoService } from 'src/app/services/logado.service';
+
 import { ClienteServico } from 'src/app/services/serviceClientes/clienteServico';
 
 @Component({
