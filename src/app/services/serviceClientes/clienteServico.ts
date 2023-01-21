@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { firstValueFrom } from "rxjs/internal/firstValueFrom";
 import { Cliente } from "src/app/models/modeloCliente";
 import { environment } from "src/environments/environment";
@@ -9,7 +9,9 @@ export class ClienteServico{
     constructor(private http:HttpClient) { }
 
     public async listarClientes(): Promise<Cliente[] | undefined> {
-        let clientes:Cliente[] | undefined = await firstValueFrom(this.http.get<Cliente[]>(`${environment.API}/clientes`));
+        let token = localStorage.getItem('token');
+        let head_obj = new HttpHeaders().set("Authorization","bearer "+token);
+        let clientes:Cliente[] | undefined = await firstValueFrom(this.http.get<Cliente[]>(`${environment.API}/clientes`, {headers:head_obj}));
         return clientes;
     }
 

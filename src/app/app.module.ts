@@ -56,7 +56,7 @@ registerLocaleData(ptBr)
     FormsModule,
     GoogleChartsModule,
     HttpClientModule,
-    GoogleMapsDemoModule
+    GoogleMapsDemoModule,
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt'},
