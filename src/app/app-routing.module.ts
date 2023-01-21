@@ -34,7 +34,7 @@ const routes: Routes = [
  {path: 'cadastro-campanhas', canActivate: [AutenticadoGuard], component: CadastroCampanhasComponent},
  {path: 'teste', canActivate: [AutenticadoGuard], component: TesteComponent},
  {path: 'lojas-maps', canActivate: [AutenticadoGuard], component: GoogleMapsDemoComponent},
- {path: '**', redirectTo: '/login'}
+ {path: '**', redirectTo:'login'}
 ];
 
 @NgModule({

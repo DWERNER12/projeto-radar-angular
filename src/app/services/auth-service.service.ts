@@ -5,42 +5,54 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { firstValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
+import { GetToken } from './redirect/getToken';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  public async isAuthenticated(token: String): Promise<boolean> {
-    let head_obj = new HttpHeaders().set("Authorization","bearer "+token);
-    let loginRest: string | undefined = await firstValueFrom(this.http.get<string>(`${environment.API}/authToken/`, {headers:head_obj}))
-    console.log(loginRest);
-    if(loginRest == null) return false;
-    return true;
-  }
-  
 
   constructor(
     private http: HttpClient,
     private route: Router
     ) {
   }
-
-  public async fazerLogin(login:Login): Promise<Logado | undefined> {
+  
+  public async fazerLogin(login:Login): Promise<Boolean | undefined> {
 
     try{
+      //debugger
       let loginRest:Logado | undefined = await firstValueFrom(this.http.post<Logado>(`${environment.API}/login/`, login))
       localStorage.setItem('usuarioLogado',loginRest.nome);
       localStorage.setItem('permissao',loginRest.permissao);
       localStorage.setItem('token',loginRest.token);
-      this.route.navigateByUrl('/dashboard')
-      return loginRest;
+      //this.route.navigateByUrl('/dashboard')
+      console.log(loginRest);
+      return true;
+      
     }catch(err){
       alert("Usuario ou senha inválidos");
       console.log(err);
-      return
+      return false
     }
   }
-
   
+  public async isAuthenticated(): Promise<boolean> {
+    debugger
+    try{
+      let logado:String | undefined = await firstValueFrom(this.http.get<String>(`${environment.API}/authToken/`, {headers:GetToken.token()}))
+      if(logado === 'logado') {
+        console.log("=========== Retonou TRUE no 'LOGADO' ===========");
+        return true;
+      }else{
+        console.log("=========== Retonou FALSE no 'LOGADO' ===========");
+        return false
+      }
+    }catch(err){
+      console.log("ERRO NO IS AUTH" + err);
+      return false;
+    }
+    
+  }
   
 }
