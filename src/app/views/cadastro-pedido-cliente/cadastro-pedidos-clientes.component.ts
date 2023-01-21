@@ -75,6 +75,10 @@ export class CadastroPedidosClientesComponent implements OnInit {
     }
   }
 
+  retornaDadoProdutos(){
+    
+  }
+
   searchcpf(event: any) {
     let id = String(event.target.value)
     this.buscarcpf(id)
