@@ -58,10 +58,7 @@ registerLocaleData(ptBr)
     GoogleChartsModule,
     HttpClientModule,
     GoogleMapsDemoModule,
-<<<<<<< HEAD
     DragDropModule
-=======
->>>>>>> dc8875fc53cc11008c86f8384b65cbabafd3e1af
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt'},
