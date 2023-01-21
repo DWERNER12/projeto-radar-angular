@@ -1,32 +1,31 @@
+import { HttpBackend, HttpClient } from '@angular/common/http';
+import { Token } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { LogadoService } from './logado.service';
+import { AuthService } from './auth-service.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AutenticadoGuard implements CanActivate {
-//===================A adicionado daqui
+  public authService: AuthService = new AuthService(this.http);
+//===================
   constructor( 
-    private logadoService: LogadoService,
-    private router:Router
+    private router:Router,
+    private http: HttpClient
     ) {}
-//=====================V adicionado ate aqui
+//=====================
 
-  canActivate(
+   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      //PROFESSOR
-      sessionStorage.setItem("urlAcessada", state.url)
-      //======V
-      //===========================A adicionado daqui
-      if(!this.logadoService.logado){
-        this.router.navigateByUrl("/login")
-        return false
-      }
-      //=======================V adicionado até aqui
-    return true
+      var token = localStorage.getItem("token")
+      console.log(token)
+      if(token == null) return false;
+      return this.authService.isAuthenticated(token.toString()).then();
+      
   }
   
 }

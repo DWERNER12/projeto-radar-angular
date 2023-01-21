@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './../../services/auth-service.service';
-import { LogadoService } from 'src/app/services/logado.service';
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
