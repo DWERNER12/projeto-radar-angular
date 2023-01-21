@@ -1,3 +1,6 @@
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from './../../services/auth-service.service';
+import { LogadoService } from 'src/app/services/logado.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,26 +11,26 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(
+    private http:HttpClient,
+    private router:Router,
+  ) { }
+
+  private authService:AuthService = {} as AuthService
 
   ngOnInit(): void {
+    this.authService = new AuthService(this.http);    
   }
   
-  public email:String = ""
-  public senha:String = ""
+  public email:string = ""
+  public senha:string = ""
   public mensagem:string = ""
 
-  logar(){
-    if(this.email === "5" && this.senha === "5"){
-      localStorage.setItem("logado", "true")
-     
-      this.router.navigateByUrl("/cadastro-cliente")
-    }
-    else{
-      this.mensagem = "Usuário ou senha inválidos"
-      this.email = ""
-      this.senha = ""
-    }
+  async logar(){
+    await this.authService.fazerLogin({
+      email: this.email,
+      senha: this.senha
+    });
   }
 
 }
