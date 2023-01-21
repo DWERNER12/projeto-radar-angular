@@ -1,3 +1,4 @@
+import { LojaServico } from './../../services/serviceLojas/lojaServico';
 import { NgModule } from '@angular/core';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { CommonModule } from '@angular/common';

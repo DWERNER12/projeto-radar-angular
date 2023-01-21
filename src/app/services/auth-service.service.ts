@@ -22,6 +22,8 @@ export class AuthService {
     localStorage.setItem('token',loginRest.token);
 
     return loginRest;
-}
+  }
+
+  
   
 }
