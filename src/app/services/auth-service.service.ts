@@ -18,7 +18,6 @@ export class AuthService {
   }
 
   public async fazerLogin(login:Login): Promise<Logado | undefined> {
-
     try{
       let loginRest:Logado | undefined = await firstValueFrom(this.http.post<Logado>(`${environment.API}/login/`, login))
       localStorage.setItem('usuarioLogado',loginRest.nome);
@@ -31,9 +30,5 @@ export class AuthService {
       console.log(err);
       return
     }
-    
   }
-
-  
-  
 }
