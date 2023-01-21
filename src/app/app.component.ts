@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LogadoService } from './services/logado.service';
+
 
 @Component({
   selector: 'app-root',
@@ -8,9 +8,7 @@ import { LogadoService } from './services/logado.service';
 })
 export class AppComponent {
   title = 'radar';
-  constructor(
-    public logadoService : LogadoService
-  ) { }
+  constructor() { }
   
 
   ngOnInit(): void {
