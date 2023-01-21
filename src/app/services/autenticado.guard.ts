@@ -1,5 +1,3 @@
-import { HttpBackend, HttpClient } from '@angular/common/http';
-import { Token } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -12,17 +10,21 @@ import { AuthService } from './auth-service.service';
 export class AutenticadoGuard implements CanActivate {
 
   constructor( 
-    private router:Router,
-    private http: HttpClient
+    private authService: AuthService,
+    private router:Router
     ) {}
   
-    public authService: AuthService = new AuthService(this.http, this.router);
+    //public authService: AuthService = new AuthService(this.http, this.router);
 
    canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
-    return this.authService.isAuthenticated();
+    
+    if(!this.authService.isAuthenticated){
+      this.router.navigateByUrl("/login")
+      return false;
+    }
+    return true;
       
   }
   

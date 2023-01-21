@@ -19,6 +19,7 @@ import { AutenticadoGuard } from './services/autenticado.guard';
 
 const routes: Routes = [
  {path: 'login', component:LoginComponent},
+ {path: 'home', canActivate: [AutenticadoGuard], component:HomeComponent},
  {path: 'dashboard', canActivate: [AutenticadoGuard], component:DashboardComponent },
  {path: 'cadastro-cliente', canActivate: [AutenticadoGuard], component:CadastroClientesComponent},
  {path: 'lista-clientes', canActivate: [AutenticadoGuard], component:ListaClientesComponent},
