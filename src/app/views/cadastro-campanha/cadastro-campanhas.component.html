@@ -1,1 +1,5 @@
-<p>cadastro-campanhas works!</p>
+<div class="container_main">
+  <div cdkDropList class="example-list container_dd" (cdkDropListDropped)="drop($event)">
+    <div class ="example-box container_image" *ngFor="let movie of movies" cdkDrag><img src="https://tse4.explicit.bing.net/th?id=OIP.egXeWyAxn8ZAMw9gumCthAHaHa&pid=Api&P=0"></div>
+  </div>
+</div>
