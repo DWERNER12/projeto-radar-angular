@@ -14,9 +14,7 @@ export class AutenticadoGuard implements CanActivate {
     private router:Router
     ) {}
   
-    //public authService: AuthService = new AuthService(this.http, this.router);
-
-   canActivate(
+       canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     

@@ -5,10 +5,13 @@ import { Cliente } from 'src/app/models/modeloCliente';
 import { PedidoProduto } from 'src/app/models/modeloPedidoProduto';
 import { Pedido } from 'src/app/models/modeloPedidos';
 import { Produto } from 'src/app/models/modeloProduto';
+import { ModeloClientesEstado } from 'src/app/models/modelViewDash/modeloClientesEstado';
+import { ModeloProdutoInfo } from 'src/app/models/modelViewDash/modeloProdutoInfo';
 import { ClienteServico } from 'src/app/services/serviceClientes/clienteServico';
 import { PedidoProdutoServico } from 'src/app/services/servicePedidosProdutos/pedidoProdutoServico';
 import { PedidoServico } from 'src/app/services/servicesPedidos/pedidoServico';
 import { ProdutoServico } from 'src/app/services/servicesProdutos/produtoServico';
+import { DashboardServico } from 'src/app/services/servicoDashboard/dashboardServico';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,17 +21,55 @@ import { ProdutoServico } from 'src/app/services/servicesProdutos/produtoServico
 export class DashboardComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
-  //declaração de servicos para buscar os dados da api
+  // ==================== DECLARAÇÃO DE SERVICOS PARA API ====================
   private pedidoServico: PedidoServico = {} as PedidoServico;
   private clienteServico: ClienteServico = {} as ClienteServico;
   private pedidoProdutoServico: PedidoProdutoServico = {} as PedidoProdutoServico;
   private produtoServico: ProdutoServico = {} as ProdutoServico;
+  private servicoDash: DashboardServico = {} as DashboardServico;
+  // ==========================================================================
 
-  public valTotal: number = 0;
-  public qtdClientes: number | any = 0;
-  public pedidosTotal: number = 0;
-  public totalProdutos: number = 0;
-  
+  // ==================== PRODUTO INFO PARA O DASH ====================
+    
+  public produtoInfoDash:ModeloProdutoInfo[] | any= [];
+  public clientesPorEstadoDash:ModeloClientesEstado[] | any = [];
+  // ==================================================================
+
+
+  // ==================== VALORES TOTAIS DO DASH ====================
+  public valTotal: number = 0; // R$ VALOR TOTAL
+  public qtdTotalClientes: number | any = 0; //QTD TOTAL DE CLIENTES
+  public qtdTotalPedidos: number = 0; //QTD TOTAL DE PEDIDOS
+  public qtdtotalProdutos: number = 0; //QTD TOTAL DE PRODUTOS
+  // =================================================================
+
+
+  // ==================== DADOS MAPA DE CALOR ====================
+  public dadosMapaDeCalor: any[] = [];
+
+  tipoGraficoMapaDeCalor: ChartType = ChartType.GeoChart;
+  public optionsMapaDeCalor = {
+    region: 'BR',
+    resolution: 'provinces',
+    width: 750,
+    height: 330,
+    colorAxis: {
+      colors: [
+        '#EAF2F8',
+        '#D4E6F1',
+        '#A9CCE3',
+        '#7FB3D5',
+        '#5499C7',
+        '#2980B9',
+        '#2471A3',
+        '#1F618D',
+        '#1A5276',
+        '#154360',
+      ],
+    },
+  };
+  // =================================================================
+
   public descPedidosCharts: any = {
     clicado: false,
     nomeProduto: '',
@@ -55,15 +96,15 @@ export class DashboardComponent implements OnInit {
   //TIPO CHARTS
   bar: ChartType = ChartType.Bar;
   pedidosPorMedicamento: ChartType = ChartType.PieChart;
-  chartGraficoData: ChartType = ChartType.GeoChart;
+  
   graficoColuna: ChartType = ChartType.ColumnChart;
 
   ///////////////////////////////////////////
 
-  //DADOS CHARTS
-  public meusDados: any[] = [];
+  //DADOS GOOGLE - CHART  QTD PRODUTOS EM ESTOQUE
+  public dadosQtdProdEstoqueDash: any[] = [];
+
   public dadosMedicamento: any = [];
-  public dadosGraficoData: any = [];
 
   public dataGraficoColuna: any = [];
 
@@ -74,27 +115,6 @@ export class DashboardComponent implements OnInit {
     width: 600,
     legend: { position: 'none' },
     bar: { groupWidth: '80%' },
-  };
-
-  public geoChartsOption = {
-    region: 'BR',
-    resolution: 'provinces',
-    width: 750,
-    height: 330,
-    colorAxis: {
-      colors: [
-        '#EAF2F8',
-        '#D4E6F1',
-        '#A9CCE3',
-        '#7FB3D5',
-        '#5499C7',
-        '#2980B9',
-        '#2471A3',
-        '#1F618D',
-        '#1A5276',
-        '#154360',
-      ],
-    },
   };
 
   public optionsProdutos = {
@@ -114,27 +134,77 @@ export class DashboardComponent implements OnInit {
     this.clienteServico = new ClienteServico(this.http);
     this.pedidoProdutoServico = new PedidoProdutoServico(this.http);
     this.produtoServico = new ProdutoServico(this.http);
+    this.servicoDash = new DashboardServico(this.http);
     this.chamarDados();
   }
 
   private async chamarDados() {
     this.produtos = await this.produtoServico.listarProdutos();
     this.pedidosProdutos = await this.pedidoProdutoServico.listarPedidoProduto();
-    this.pedidos = await this.pedidoServico.listarPedidos();
-    this.qtdClientes = await this.clienteServico.listarTamanhoClientes();
-    this.todosClientes = await this.clienteServico.listarClientes();
+    this.qtdTotalClientes = await this.clienteServico.listarTamanhoClientes();
+
+    this.produtoInfoDash = await this.servicoDash.modeloProdutoInfo();    
+    this.pedidos = await this.pedidoServico.listarPedidos();//************** */
+    this.clientesPorEstadoDash = await this.servicoDash.modeloClientesPorEstado();
+
+
+     //DADOS PRODUTOS - VENDIDOS
+    let novoProd = [];
+    for (let i = 0; i < this.produtoInfoDash.length; i++) {
+      let key = this.produtoInfoDash[i].nome;
+      let valor = this.produtoInfoDash[i].qtd_total_vendida;
+      novoProd.push([key, valor]);
+    }
+    this.dataGraficoColuna = novoProd;
 
     //DADOS PRODUTOS - ESTOQUE
     let listaNovaProdutos = [];
     for (let i = 0; i < this.produtos.length; i++) {
       listaNovaProdutos.push([
-        this.produtos[i].nome,
-        this.produtos[i].qtd_Estoque,
+        this.produtoInfoDash[i].nome,
+        this.produtoInfoDash[i].qtd_estoque,
       ]);
     }
-    this.meusDados = listaNovaProdutos;
+    this.dadosQtdProdEstoqueDash = listaNovaProdutos;
+    console.log(listaNovaProdutos);
+     //DADO GRAFICO GEOGRAFICO - CALOR
+    //  let listaClientesPorEstado = [];
+    //  for (let i = 0; i < this.todosClientes.length; i++) {
+    //    listaClientesPorEstado.push([`BR-${this.todosClientes[i].estado}`, 1]);
+    //  }
+    //  let Estadofiltrado: any = {};
+    //  for (let i = 0; i < listaClientesPorEstado.length; i++) {
+    //    let dado = listaClientesPorEstado[i];
+    //    if (Estadofiltrado[dado[0]]) {
+    //      Estadofiltrado[dado[0]] += dado[1];
+    //    } else {
+    //      Estadofiltrado[dado[0]] = dado[1];
+    //    }
+    //  }
+    // let chavesCliente = Object.keys(Estadofiltrado);
+    let novoDado = [];
+    for (let i = 0; i < this.clientesPorEstadoDash.length; i++) {
+      let key = this.clientesPorEstadoDash[i];
+      let valor = this.clientesPorEstadoDash[i];
+      novoDado.push([key, valor]);
+    }
+    console.log(novoDado);
+    this.dadosMapaDeCalor = novoDado;
+    console.log("Dados mapa de calor " + this.dadosMapaDeCalor);
+
+
+    
+    /*
+    this.todosClientes = await this.clienteServico.listarClientes();
+
+    this.modeloServicoProdutoInfo = await this.servicoDash.modeloProdutoInfo();
+
+
+
+    
     /* ------------------------------------------------------------------------------*/
 
+    /*
     //DADOS GANHO POR PEDIDOS
     let listaPedidosProdutosNova = [];
     for (let i = 0; i < this.pedidosProdutos.length; i++) {
@@ -164,32 +234,8 @@ export class DashboardComponent implements OnInit {
     /* --------------------------------------------------------------------------------------------------*/
 
     //DADOS QTD DE PRODUTOS VENDIDOS
-    let listaProdutosVendidos = [];
-    for (let i = 0; i < this.pedidosProdutos.length; i++) {
-      listaProdutosVendidos.push([
-        this.produtos[this.pedidosProdutos[i].produto_Id - 1].nome,
-        this.pedidosProdutos[i].qtd_Estoque,
-      ]);
-    }
-
-    let produtofiltrado: any = {};
-    for (let i = 0; i < listaProdutosVendidos.length; i++) {
-      let dadoProd = listaProdutosVendidos[i];
-      if (produtofiltrado[dadoProd[0]]) {
-        produtofiltrado[dadoProd[0]] += dadoProd[1];
-      } else {
-        produtofiltrado[dadoProd[0]] = dadoProd[1];
-      }
-    }
-
-    let prodChave = Object.keys(produtofiltrado);
-    let novoProd = [];
-    for (let i = 0; i < prodChave.length; i++) {
-      let key = prodChave[i];
-      let valor = produtofiltrado[key];
-      novoProd.push([key, valor]);
-    }
-    this.dataGraficoColuna = novoProd;
+    /*
+    
     
     /* --------------------------------------------------------------------------------------------------*/
 
@@ -200,42 +246,27 @@ export class DashboardComponent implements OnInit {
 
     //DADOS PEDIDOS
     for (let i = 0; i < this.pedidos.length; i++) {
-      this.pedidosTotal += 1;
+      this.qtdTotalPedidos += 1;
     }
+    console.log(this.qtdTotalPedidos)
 
     //TOTAL DE PRODUTOS
     for (let i = 0; i < this.produtos.length; i++) {
-      this.totalProdutos += 1;
+      this.qtdtotalProdutos += 1;
     }
 
-    /* --------------------------------------------------------------------------------------------------*/
 
-    //DADO GRAFICO GEOGRAFICO - CALOR
-    let listaClientesPorEstado = [];
-    for (let i = 0; i < this.todosClientes.length; i++) {
-      listaClientesPorEstado.push([`BR-${this.todosClientes[i].estado}`, 1]);
-    }
-    let Estadofiltrado: any = {};
-    for (let i = 0; i < listaClientesPorEstado.length; i++) {
-      let dado = listaClientesPorEstado[i];
-      if (Estadofiltrado[dado[0]]) {
-        Estadofiltrado[dado[0]] += dado[1];
-      } else {
-        Estadofiltrado[dado[0]] = dado[1];
-      }
-    }
     
-    let chavesCliente = Object.keys(Estadofiltrado);
-    let novoDado = [];
-    for (let i = 0; i < chavesCliente.length; i++) {
-      let key = chavesCliente[i];
-      let valor = Estadofiltrado[key];
-      novoDado.push([key, valor]);
-    }
-    this.dadosGraficoData = novoDado;
+
+    /* --------------------------------------------------------------------------------------------------*/
+  
+    /*
+   
+
+    
     /* --------------------------------------------------------------------------------------------------*/
 
-    console.log('Lista estado', this.dadosGraficoData);
+    console.log('Lista estado', this.dadosMapaDeCalor);
 
     // console.log(listaPedidosProdutosNova)
     // console.log(this.pedidos)
@@ -247,7 +278,7 @@ export class DashboardComponent implements OnInit {
     console.log($event);
     try {
       const { row, column } = $event.selection[0];
-      const year = this.meusDados[row][0];
+      const year = this.dadosQtdProdEstoqueDash[row][0];
       let teste: any = {};
       for (let i = 0; i < this.dataGraficoColuna.length; i++) {
         let dado = this.dataGraficoColuna[i];
@@ -257,10 +288,11 @@ export class DashboardComponent implements OnInit {
           teste[dado[0]] = dado[1];
         }
       }
+      
       this.descProdutosCharts = {
         clicado: true,
         nomeProduto: year,
-        qtdEstoque: this.meusDados[row][column],
+        qtdEstoque: this.dadosQtdProdEstoqueDash[row][column],
         qtdVendida: teste[year],
       };
       console.log(this.descProdutosCharts);

@@ -60,8 +60,9 @@ export class CadastroClientesComponent implements OnInit {
     }
     this.router.navigateByUrl("/lista-clientes")
   }
-
+  
   public cancelar():void{
+    
     this.router.navigateByUrl('/lista-clientes');
   }
 
