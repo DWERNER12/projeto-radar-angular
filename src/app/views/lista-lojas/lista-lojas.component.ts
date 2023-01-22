@@ -18,6 +18,7 @@ export class ListaLojasComponent implements OnInit {
   
   private LojaServico:LojaServico = {} as LojaServico
   public lojas:Loja[] | undefined = []
+  public loja:Loja | undefined = {} as Loja
 
   ngOnInit(): void { //INICIANDO A LISTA DE LOJAS COM O OBJETO CARREGADO DA API
     this.LojaServico = new LojaServico(this.http)
@@ -45,5 +46,20 @@ export class ListaLojasComponent implements OnInit {
   redirectTo(uri:string){
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
     this.router.navigate([uri]));
+  }
+
+  async GetLocation(id:Number) {
+    var geocoder = new google.maps.Geocoder();
+    this.loja = await this.LojaServico.buscarLojaPorId(id)
+    var address = `${this.loja?.logradouro}`
+    geocoder.geocode({ 'address': address }, function (results:any, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            var latitude = results[0].geometry.location.lat();
+            var longitude = results[0].geometry.location.lng();
+            alert("Latitude: " + latitude + "\nLongitude: " + longitude);
+        } else {
+            alert("Request failed.")
+        }
+    });
   }
 }
