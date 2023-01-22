@@ -1,11 +1,11 @@
 
-<app-header></app-header>
+<app-header *ngIf="mostrarMenu"></app-header>
 
 <div id="layoutSidenav">
-    <div id="layoutSidenav_nav">
+    <div id="layoutSidenav_nav"  *ngIf="mostrarMenu">
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
           <div class="sb-sidenav-menu">
-            <div class="nav">
+            <div class="nav" >
               <hr />
               <a class="nav-link" routerLink="/home">
                 <div class="sb-nav-link-icon">
