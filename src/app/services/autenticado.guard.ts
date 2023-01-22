@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth-service.service';
@@ -8,7 +8,8 @@ import { AuthService } from './auth-service.service';
   providedIn: 'root'
 })
 export class AutenticadoGuard implements CanActivate {
-
+  mostrarNav = new EventEmitter<boolean>();
+  
   constructor( 
     private authService: AuthService,
     private router:Router
@@ -20,9 +21,14 @@ export class AutenticadoGuard implements CanActivate {
     
     if(!this.authService.isAuthenticated){
       this.router.navigateByUrl("/login")
+      this.mostrarNav.emit(true);
       return false;
+    }else{
+      this.mostrarNav.emit(true);
+      return true;
     }
-    return true;
+
+    
       
   }
   
