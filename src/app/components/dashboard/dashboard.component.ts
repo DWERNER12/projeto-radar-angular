@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
 
 
   // ==================== DADOS MAPA DE CALOR ====================
-  public dadosMapaDeCalor: any[] = [];
+  public dadosMapaDeCalor: any = [];
 
   tipoGraficoMapaDeCalor: ChartType = ChartType.GeoChart;
   public optionsMapaDeCalor = {
@@ -68,7 +68,38 @@ export class DashboardComponent implements OnInit {
       ],
     },
   };
-  // =================================================================
+  // ====================================================================
+
+
+  // ==================== DADOS QTD DE PRODUTOS EM ESTOQUE ====================
+  public dadosQtdProdEstoqueDash: any[] = [];
+  tipoGraficoQtdProdutosEstoque: ChartType = ChartType.Bar;
+  public optionsGraficoProdutosEstoque = {
+    pieSliceText: 'label',
+    legend: { position: 'none' },
+  };
+  // ==========================================================================
+
+
+  // ==================== DADOS MOVIMENTACAO PRODUTO ====================
+  public dataGraficoMovimentacaoProduto: any = [];
+  tipoGraficoMovimentacaoProdutos: ChartType = ChartType.ColumnChart;
+  public optionsGraficoMovimentacaoProduto = {
+    width: 600,
+    legend: { position: 'none' },
+    bar: { groupWidth: '80%' },
+  };
+  // ==========================================================================
+
+  // ==================== DADOS GANHOS POR PRODUTO ====================
+  public dadosGanhoPorProduto: any = [];
+  tipoGraficoGanhosPorProduto: ChartType = ChartType.PieChart;
+  public optionsGraficoGanhoPorProduto = {
+    pieSliceText: 'none',
+    pieHole: 0.4,
+  };
+  
+  // ==========================================================================
 
   public descPedidosCharts: any = {
     clicado: false,
@@ -93,41 +124,6 @@ export class DashboardComponent implements OnInit {
   public pedidos: any = [];
   public todosClientes: any = [];
 
-  //TIPO CHARTS
-  bar: ChartType = ChartType.Bar;
-  pedidosPorMedicamento: ChartType = ChartType.PieChart;
-  
-  graficoColuna: ChartType = ChartType.ColumnChart;
-
-  ///////////////////////////////////////////
-
-  //DADOS GOOGLE - CHART  QTD PRODUTOS EM ESTOQUE
-  public dadosQtdProdEstoqueDash: any[] = [];
-
-  public dadosMedicamento: any = [];
-
-  public dataGraficoColuna: any = [];
-
-  ////////////////////////////////////
-
-  //OPTIONS DOS CHARTS
-  public optionsColuna = {
-    width: 600,
-    legend: { position: 'none' },
-    bar: { groupWidth: '80%' },
-  };
-
-  public optionsProdutos = {
-    pieSliceText: 'label',
-    legend: { position: 'none' },
-  };
-
-  public optionsMedicamento = {
-    pieSliceText: 'none',
-    pieHole: 0.4,
-  };
-  
-  /////////////////////////////////////////////////
 
   ngOnInit(): void {
     this.pedidoServico = new PedidoServico(this.http);
@@ -143,9 +139,10 @@ export class DashboardComponent implements OnInit {
     this.pedidosProdutos = await this.pedidoProdutoServico.listarPedidoProduto();
     this.qtdTotalClientes = await this.clienteServico.listarTamanhoClientes();
 
-    this.produtoInfoDash = await this.servicoDash.modeloProdutoInfo();    
+    this.produtoInfoDash = await this.servicoDash.modeloProdutoInfo();    //***** */
     this.pedidos = await this.pedidoServico.listarPedidos();//************** */
     this.clientesPorEstadoDash = await this.servicoDash.modeloClientesPorEstado();
+
 
 
      //DADOS PRODUTOS - VENDIDOS
@@ -155,7 +152,7 @@ export class DashboardComponent implements OnInit {
       let valor = this.produtoInfoDash[i].qtd_total_vendida;
       novoProd.push([key, valor]);
     }
-    this.dataGraficoColuna = novoProd;
+    this.dataGraficoMovimentacaoProduto = novoProd;
 
     //DADOS PRODUTOS - ESTOQUE
     let listaNovaProdutos = [];
@@ -167,33 +164,27 @@ export class DashboardComponent implements OnInit {
     }
     this.dadosQtdProdEstoqueDash = listaNovaProdutos;
     console.log(listaNovaProdutos);
-     //DADO GRAFICO GEOGRAFICO - CALOR
-    //  let listaClientesPorEstado = [];
-    //  for (let i = 0; i < this.todosClientes.length; i++) {
-    //    listaClientesPorEstado.push([`BR-${this.todosClientes[i].estado}`, 1]);
-    //  }
-    //  let Estadofiltrado: any = {};
-    //  for (let i = 0; i < listaClientesPorEstado.length; i++) {
-    //    let dado = listaClientesPorEstado[i];
-    //    if (Estadofiltrado[dado[0]]) {
-    //      Estadofiltrado[dado[0]] += dado[1];
-    //    } else {
-    //      Estadofiltrado[dado[0]] = dado[1];
-    //    }
-    //  }
-    // let chavesCliente = Object.keys(Estadofiltrado);
+    
+    //DADOS GRAFICO DE CALOR MAPA
     let novoDado = [];
     for (let i = 0; i < this.clientesPorEstadoDash.length; i++) {
-      let key = this.clientesPorEstadoDash[i];
-      let valor = this.clientesPorEstadoDash[i];
-      novoDado.push([key, valor]);
+      novoDado.push([
+        `BR-${this.clientesPorEstadoDash[i].estado}`,
+        this.clientesPorEstadoDash[i].qtd_clientes
+      ]);
     }
     console.log(novoDado);
     this.dadosMapaDeCalor = novoDado;
-    console.log("Dados mapa de calor " + this.dadosMapaDeCalor);
 
-
-    
+    //DADOS GANHO POR PROUTOS
+    let novo = [];
+    for (let i = 0; i < this.produtoInfoDash.length; i++) {
+      let key = this.produtoInfoDash[i].nome;
+      let valor = this.produtoInfoDash[i].faturamento_total;
+      novo.push([key, valor]);
+    }
+    this.dadosGanhoPorProduto = novo;
+    console.log(novo);    
     /*
     this.todosClientes = await this.clienteServico.listarClientes();
 
@@ -205,7 +196,7 @@ export class DashboardComponent implements OnInit {
     /* ------------------------------------------------------------------------------*/
 
     /*
-    //DADOS GANHO POR PEDIDOS
+    
     let listaPedidosProdutosNova = [];
     for (let i = 0; i < this.pedidosProdutos.length; i++) {
       listaPedidosProdutosNova.push([
@@ -230,7 +221,7 @@ export class DashboardComponent implements OnInit {
       let valor = filtrado[key];
       novo.push([key, valor]);
     }
-    this.dadosMedicamento = novo;
+    this.dadosGanhoPorProduto = novo;
     /* --------------------------------------------------------------------------------------------------*/
 
     //DADOS QTD DE PRODUTOS VENDIDOS
@@ -280,8 +271,8 @@ export class DashboardComponent implements OnInit {
       const { row, column } = $event.selection[0];
       const year = this.dadosQtdProdEstoqueDash[row][0];
       let teste: any = {};
-      for (let i = 0; i < this.dataGraficoColuna.length; i++) {
-        let dado = this.dataGraficoColuna[i];
+      for (let i = 0; i < this.dataGraficoMovimentacaoProduto.length; i++) {
+        let dado = this.dataGraficoMovimentacaoProduto[i];
         if (teste[dado[0]]) {
           teste[dado[0]] += dado[1];
         } else {
@@ -305,10 +296,10 @@ export class DashboardComponent implements OnInit {
   selecionadoPizza($event: any) {
     try {
       const { row, column } = $event.selection[0];
-      const year = this.dadosMedicamento[row][0];
+      const year = this.dadosGanhoPorProduto[row][0];
       let teste: any = {};
-      for (let i = 0; i < this.dadosMedicamento.length; i++) {
-        let dado = this.dadosMedicamento[i];
+      for (let i = 0; i < this.dadosGanhoPorProduto.length; i++) {
+        let dado = this.dadosGanhoPorProduto[i];
         if (teste[dado[0]]) {
           teste[dado[0]] += dado[1];
         } else {

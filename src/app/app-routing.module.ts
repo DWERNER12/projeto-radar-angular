@@ -28,6 +28,7 @@ const routes: Routes = [
  {path: 'lista-produtos', canActivate: [AutenticadoGuard], component:ListaProdutosComponent},
  {path: 'cadastro-produto/:id', canActivate: [AutenticadoGuard], component:CadastroProdutosComponent},
  {path: 'cadastro-pedido', canActivate: [AutenticadoGuard], component:CadastroPedidosClientesComponent},
+ {path: 'cadastro-pedido/:id', canActivate: [AutenticadoGuard], component:CadastroPedidosClientesComponent},
  {path: 'lista-pedidos', canActivate: [AutenticadoGuard], component: ListaPedidosComponent},
  {path: 'lista-lojas', canActivate: [AutenticadoGuard], component:  ListaLojasComponent},
  {path: 'lista-campanhas', canActivate: [AutenticadoGuard], component:ListaCampanhasComponent},
