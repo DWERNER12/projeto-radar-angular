@@ -21,11 +21,11 @@
                         <div class="form-floating mb-3">
                             <input class="form-control" id="endereco" name="endereco" type="password" [(ngModel)]="senha" placeholder="Digite sua senha">
                             <label for="email">Senha</label>
+                        </div> 
+
+                        <div *ngIf="mensagem" class="alert alert-danger">
+                          {{mensagem}}
                         </div>
-    
-                        <div *ngIf="mensagem" class="alert alert-danger" role="alert">
-                            {{mensagem}}
-                        </div>    
     
                         <button class="btn btn-primary btn-xl" id="submitButton" type="button" (click)="logar()">Enviar</button>
                     </form>

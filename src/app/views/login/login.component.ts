@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
     this.authService = new AuthService(this.http,this.router);    
   }
   
+  public logado:boolean = false
   public email:string = ""
   public senha:string = ""
   public mensagem:string = ""
@@ -31,6 +32,7 @@ export class LoginComponent implements OnInit {
     if(logado == true){
       this.router.navigateByUrl('/dashboard');
     }else{
+      this.mensagem = "Email ou senha inválidos.";
       return console.log("nada");
     }
   }

@@ -1,7 +1,7 @@
 export interface Loja{
     id:Number 
-    nome:string 
-    Observacao:string | undefined
+    nome:string | undefined
+    observacao:string | undefined
     cep:string | undefined
     logradouro:String | undefined
     numero:String | undefined
