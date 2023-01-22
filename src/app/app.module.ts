@@ -27,6 +27,8 @@ import { TesteComponent } from './views/teste/teste.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GoogleMapsDemoModule } from './views/google-maps-demo/google-maps-demo.module';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { AuthService } from './services/auth-service.service';
+import { AutenticadoGuard } from './services/autenticado.guard';
 
 registerLocaleData(ptBr)
 
@@ -59,7 +61,7 @@ registerLocaleData(ptBr)
     GoogleMapsDemoModule,
     DragDropModule
   ],
-  providers: [
+  providers: [AuthService, AutenticadoGuard,
     {provide: LOCALE_ID, useValue: 'pt'},
     {provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL'}
   ],
