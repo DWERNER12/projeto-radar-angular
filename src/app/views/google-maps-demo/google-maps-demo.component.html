@@ -1,9 +1,13 @@
-<h1 class="text-center">Mapa</h1>
+<div class="d-flex justify-content-between align-items-center m-5">
+    <div class="align-self-between">
+        <p>Nome: <span>{{ loja?.nome }}</span></p>
+        <p>Endereço: <span>{{ loja?.logradouro }}, {{ loja?.numero }} - {{ loja?.bairro }}, {{ loja?.cidade }} - {{ loja?.estado }}, {{ loja?.cep }}</span></p>
+        <p>Observação: <span>{{ loja?.observacao }}</span></p>
+    </div>
 
-<div class="d-flex justify-content-center">
     <google-map 
     height="600px" 
-                width="950px" 
+                width="900px" 
                 [center]="center" 
                 [zoom]="zoom">
         <map-marker #marker="mapMarker" 

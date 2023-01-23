@@ -35,7 +35,7 @@ const routes: Routes = [
  {path: 'cadastro-loja', canActivate: [AutenticadoGuard], component:CadastroLojasComponent},
  {path: 'cadastro-campanhas', canActivate: [AutenticadoGuard], component: CadastroCampanhasComponent},
  {path: 'teste', canActivate: [AutenticadoGuard], component: TesteComponent},
- {path: 'lojas-maps', canActivate: [AutenticadoGuard], component: GoogleMapsDemoComponent},
+ {path: 'lojas-maps/:id', canActivate: [AutenticadoGuard], component: GoogleMapsDemoComponent},
  {path: '**', redirectTo:'login'}
 ];
 

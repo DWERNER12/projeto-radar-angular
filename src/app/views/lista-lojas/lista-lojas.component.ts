@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Loja } from 'src/app/models/modeloLoja';
+import { catchError, map, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-lista-lojas',
@@ -10,11 +11,18 @@ import { Loja } from 'src/app/models/modeloLoja';
   styleUrls: ['./lista-lojas.component.css']
 })
 export class ListaLojasComponent implements OnInit {
-
+  apiLoaded: Observable<boolean>;
+  
   constructor(
     private http:HttpClient,
     private router:Router,
-  ) { }
+  ) {
+    this.apiLoaded = http.jsonp('https://maps.googleapis.com/maps/api/js?key=AIzaSyC_swsQQ2u2w3S5tunR9SjpwbsYMlIWUS8', 'callback')
+        .pipe(
+          map(() => true),
+          catchError(() => of(false)),
+        );
+  }
   
   private LojaServico:LojaServico = {} as LojaServico
   public lojas:Loja[] | undefined = []
@@ -47,19 +55,9 @@ export class ListaLojasComponent implements OnInit {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
     this.router.navigate([uri]));
   }
-
-  async GetLocation(id:Number) {
-    var geocoder = new google.maps.Geocoder();
-    this.loja = await this.LojaServico.buscarLojaPorId(id)
-    var address = `${this.loja?.logradouro}`
-    geocoder.geocode({ 'address': address }, function (results:any, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-            var latitude = results[0].geometry.location.lat();
-            var longitude = results[0].geometry.location.lng();
-            alert("Latitude: " + latitude + "\nLongitude: " + longitude);
-        } else {
-            alert("Request failed.")
-        }
-    });
+  
+  getLocation(id:Number) {
+    this.router.navigateByUrl(`/lojas-maps/${id}`)
   }
+
 }

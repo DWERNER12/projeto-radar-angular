@@ -29,6 +29,7 @@ import { GoogleMapsDemoModule } from './views/google-maps-demo/google-maps-demo.
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { AuthService } from './services/auth-service.service';
 import { AutenticadoGuard } from './services/autenticado.guard';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 registerLocaleData(ptBr)
 
@@ -59,7 +60,8 @@ registerLocaleData(ptBr)
     GoogleChartsModule,
     HttpClientModule,
     GoogleMapsDemoModule,
-    DragDropModule
+    DragDropModule,
+    GoogleMapsModule,
   ],
   providers: [AuthService, AutenticadoGuard,
     {provide: LOCALE_ID, useValue: 'pt'},
