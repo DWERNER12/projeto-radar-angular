@@ -1,12 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { firstValueFrom } from "rxjs";
-import { Produto } from "src/app/models/modeloProduto";
 import { ModeloClientesEstado } from "src/app/models/modelViewDash/modeloClientesEstado";
 import { ModeloProdutoInfo } from "src/app/models/modelViewDash/modeloProdutoInfo";
 import { ModeloTotal } from "src/app/models/modelViewDash/modeloTotal";
 import { ModeloVendas } from "src/app/models/modelViewDash/modeloVendas";
 import { environment } from "src/environments/environment";
-import { GetToken } from "../redirect/getToken";
+import { GetToken } from "../token/getToken";
 
 export class DashboardServico{
 

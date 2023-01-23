@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { firstValueFrom } from "rxjs/internal/firstValueFrom";
 import { PedidoProduto } from "src/app/models/modeloPedidoProduto";
 import { environment } from "src/environments/environment";
-import { GetToken } from "../redirect/getToken";
+import { GetToken } from "../token/getToken";
 
 export class PedidoProdutoServico{
 
