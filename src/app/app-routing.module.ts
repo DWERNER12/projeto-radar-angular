@@ -16,6 +16,7 @@ import { LoginComponent } from './views/login/login.component';
 import { TesteComponent } from './views/teste/teste.component';
 import { GoogleMapsDemoComponent } from './views/google-maps-demo/google-maps-demo.component';
 import { AutenticadoGuard } from './services/autenticado.guard';
+import { NotFoundComponent } from './views/not-found/not-found.component';
 
 const routes: Routes = [
  {path: 'login', component:LoginComponent},
@@ -36,7 +37,7 @@ const routes: Routes = [
  {path: 'cadastro-campanhas', canActivate: [AutenticadoGuard], component: CadastroCampanhasComponent},
  {path: 'teste', canActivate: [AutenticadoGuard], component: TesteComponent},
  {path: 'lojas-maps/:id', canActivate: [AutenticadoGuard], component: GoogleMapsDemoComponent},
- {path: '**', redirectTo:'login'}
+ {path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({
