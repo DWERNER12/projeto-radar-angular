@@ -34,6 +34,7 @@ export class AutenticadoGuard implements CanActivate {
       return true;
     }else{
       this.mostrarNav.emit(false);
+      this.router.navigateByUrl("/login")
       return false;
     }
   }

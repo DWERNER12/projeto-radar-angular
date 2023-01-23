@@ -135,7 +135,6 @@ export class DashboardComponent implements OnInit {
   }
 
   private async chamarDados() {
-    debugger
     this.produtos = await this.produtoServico.listarProdutos();
     this.pedidosProdutos = await this.pedidoProdutoServico.listarPedidoProduto();
     this.qtdTotalClientes = await this.clienteServico.listarTamanhoClientes();

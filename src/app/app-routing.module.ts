@@ -15,6 +15,7 @@ import { ListaProdutosComponent } from './views/lista-produtos/lista-produtos.co
 import { LoginComponent } from './views/login/login.component';
 import { GoogleMapsDemoComponent } from './views/google-maps-demo/google-maps-demo.component';
 import { AutenticadoGuard } from './services/guard/autenticado.guard';
+import { NotFoundComponent } from './views/not-found/not-found.component';
 
 const routes: Routes = [
  {path: 'login', component:LoginComponent},
@@ -32,13 +33,14 @@ const routes: Routes = [
  {path: 'lista-lojas', canActivate: [AutenticadoGuard], component:  ListaLojasComponent},
  {path: 'lista-campanhas', canActivate: [AutenticadoGuard], component:ListaCampanhasComponent},
  {path: 'cadastro-loja', canActivate: [AutenticadoGuard], component:CadastroLojasComponent},
+ {path: 'cadastro-loja/:id', canActivate: [AutenticadoGuard], component:CadastroLojasComponent},
  {path: 'cadastro-campanhas', canActivate: [AutenticadoGuard], component: CadastroCampanhasComponent},
- {path: 'lojas-maps', canActivate: [AutenticadoGuard], component: GoogleMapsDemoComponent},
- {path: '**', redirectTo:'login'}
+ {path: 'lojas-maps/:id', canActivate: [AutenticadoGuard], component: GoogleMapsDemoComponent},
+ {path: '**', component:NotFoundComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true})],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

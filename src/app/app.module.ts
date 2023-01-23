@@ -27,6 +27,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { AutenticadoGuard } from './services/guard/autenticado.guard';
 import { AuthService } from './services/guard/auth-service.service';
+import { NotFoundComponent } from './views/not-found/not-found.component';
 
 registerLocaleData(ptBr)
 
@@ -48,6 +49,7 @@ registerLocaleData(ptBr)
     ListaCampanhasComponent,
     ListaClientesComponent,
     ListaPedidosComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
