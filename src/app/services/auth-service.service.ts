@@ -40,23 +40,19 @@ export class AuthService {
   }
   
   public async isAuthenticated(): Promise<boolean> {
-    
-    try{
-      let logado:String | undefined = await firstValueFrom(this.http.get<String>(`${environment.API}/authToken/`, {headers:GetToken.token()}))
-      if(logado === 'logado') {
+    try {
+      const response = await this.http.get<string>(`${environment.API}/authToken/`, {headers: GetToken.token()}).toPromise();
+      if (response === 'logado') {
         console.log("=========== Retonou TRUE no 'LOGADO' ===========");
-        //this.mostrarNav.emit(true);
         return true;
-      }else{
+      } else {
         console.log("=========== Retonou FALSE no 'LOGADO' ===========");
-        //this.mostrarNav.emit(false);
-        return false
+        return false;
       }
-    }catch(err){
-      console.log("ERRO NO IS AUTH" + err);
+    } catch (err) {
+      console.log("ERRO NO IS AUTH:", err);
       return false;
     }
-    
   }
   
 }

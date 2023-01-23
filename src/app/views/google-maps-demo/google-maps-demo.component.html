@@ -1,17 +1,29 @@
-<div class="d-flex justify-content-between align-items-center m-5">
-    <div class="align-self-between">
-        <p>Nome: <span>{{ loja?.nome }}</span></p>
-        <p>Endereço: <span>{{ loja?.logradouro }}, {{ loja?.numero }} - {{ loja?.bairro }}, {{ loja?.cidade }} - {{ loja?.estado }}, {{ loja?.cep }}</span></p>
-        <p>Observação: <span>{{ loja?.observacao }}</span></p>
+<div class="d-flex justify-content-center m-3 p-3 rounded shadow">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-5" style="background-color:white;">
+                <div class="form-group">
+                    <label>Nome:</label>
+                    <div class="form-control text-wrap">{{loja?.nome}}</div>
+                </div>
+                <div class="form-group">
+                    <label>Endereço:</label>
+                    <div class="form-control text-wrap" style="height:auto">{{ loja?.logradouro }}, {{ loja?.numero }} -
+                        {{ loja?.bairro }}, {{ loja?.cidade }} - {{ loja?.estado }}, {{ loja?.cep }}</div>
+                </div>
+                <div class="form-group">
+                    <label>Observação:</label>
+                    <div class="form-control text-wrap" style="height:auto">{{loja?.observacao}}</div>
+                </div>
+            </div>
+            <div class="col-sm-7" style="background-color:white;">
+                <div class="ml-3 border border-black">
+                    <google-map height="600px" width="900px" [center]="center" [zoom]="zoom">
+                        <map-marker #marker="mapMarker" *ngFor="let markerPosition of markerPositions"
+                            [position]="markerPosition"></map-marker>
+                    </google-map>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <google-map 
-    height="600px" 
-                width="900px" 
-                [center]="center" 
-                [zoom]="zoom">
-        <map-marker #marker="mapMarker" 
-                    *ngFor="let markerPosition of markerPositions"
-                    [position]="markerPosition"></map-marker>
-    </google-map>
 </div>
