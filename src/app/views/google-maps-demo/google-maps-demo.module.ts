@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 
 import { GoogleMapsDemoComponent } from './google-maps-demo.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { GoogleMapsDemoComponent } from './google-maps-demo.component';
     GoogleMapsModule,
     HttpClientModule,
     HttpClientJsonpModule,
+    FormsModule,
   ],
   exports: [
     GoogleMapsDemoComponent,

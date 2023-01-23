@@ -2,7 +2,6 @@ import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
-
 import { ListaClientesComponent } from './views/lista-clientes/lista-clientes.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +24,7 @@ import { ListaCampanhasComponent } from './views/lista-campanhas/lista-campanhas
 import { HttpClientModule } from '@angular/common/http';
 import { GoogleMapsDemoModule } from './views/google-maps-demo/google-maps-demo.module';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { GoogleMapsModule } from '@angular/google-maps';
 import { AutenticadoGuard } from './services/guard/autenticado.guard';
 import { AuthService } from './services/guard/auth-service.service';
 
@@ -56,7 +56,8 @@ registerLocaleData(ptBr)
     GoogleChartsModule,
     HttpClientModule,
     GoogleMapsDemoModule,
-    DragDropModule
+    DragDropModule,
+    GoogleMapsModule,
   ],
   providers: [AuthService, AutenticadoGuard,
     {provide: LOCALE_ID, useValue: 'pt'},

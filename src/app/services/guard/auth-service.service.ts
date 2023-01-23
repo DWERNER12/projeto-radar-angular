@@ -31,8 +31,6 @@ export class AuthService {
       return true;
       
     }catch(err){
-      // alert("Usuario ou senha inválidos");
-      // console.log(err);
       return false
     }
   }
