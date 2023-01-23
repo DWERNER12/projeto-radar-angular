@@ -13,30 +13,28 @@ import { ListaLojasComponent } from './views/lista-lojas/lista-lojas.component';
 import { ListaPedidosComponent } from './views/lista-pedidos/lista-pedidos.component';
 import { ListaProdutosComponent } from './views/lista-produtos/lista-produtos.component';
 import { LoginComponent } from './views/login/login.component';
-import { TesteComponent } from './views/teste/teste.component';
 import { GoogleMapsDemoComponent } from './views/google-maps-demo/google-maps-demo.component';
-import { AutenticadoGuard } from './services/autenticado.guard';
+import { AutenticadoGuard } from './services/guard/autenticado.guard';
 
 const routes: Routes = [
  {path: 'login', component:LoginComponent},
- {path: 'home', canActivate: [AutenticadoGuard], component:HomeComponent},
- {path: 'dashboard', canActivate: [AutenticadoGuard], component:DashboardComponent },
- {path: 'cadastro-cliente', canActivate: [AutenticadoGuard], component:CadastroClientesComponent},
- {path: 'lista-clientes', canActivate: [AutenticadoGuard], component:ListaClientesComponent},
- {path: 'cadastro-cliente/:id', canActivate: [AutenticadoGuard], component:CadastroClientesComponent},
- {path: 'cadastro-produto', canActivate: [AutenticadoGuard], component:CadastroProdutosComponent},
- {path: 'lista-produtos', canActivate: [AutenticadoGuard], component:ListaProdutosComponent},
- {path: 'cadastro-produto/:id', canActivate: [AutenticadoGuard], component:CadastroProdutosComponent},
- {path: 'cadastro-pedido', canActivate: [AutenticadoGuard], component:CadastroPedidosClientesComponent},
- {path: 'cadastro-pedido/:id', canActivate: [AutenticadoGuard], component:CadastroPedidosClientesComponent},
- {path: 'lista-pedidos', canActivate: [AutenticadoGuard], component: ListaPedidosComponent},
- {path: 'lista-lojas', canActivate: [AutenticadoGuard], component:  ListaLojasComponent},
- {path: 'lista-campanhas', canActivate: [AutenticadoGuard], component:ListaCampanhasComponent},
- {path: 'cadastro-loja', canActivate: [AutenticadoGuard], component:CadastroLojasComponent},
- {path: 'cadastro-campanhas', canActivate: [AutenticadoGuard], component: CadastroCampanhasComponent},
- {path: 'teste', canActivate: [AutenticadoGuard], component: TesteComponent},
- {path: 'lojas-maps', canActivate: [AutenticadoGuard], component: GoogleMapsDemoComponent},
- {path: '**', redirectTo:'login'}
+ {path: 'home',  component:HomeComponent, canActivate: [AutenticadoGuard],},
+ {path: 'dashboard',  component:DashboardComponent, canActivate: [AutenticadoGuard], },
+ {path: 'cadastro-cliente', component:CadastroClientesComponent,canActivate: [AutenticadoGuard]},
+ {path: 'lista-clientes', component:ListaClientesComponent, canActivate: [AutenticadoGuard]},
+ {path: 'cadastro-cliente/:id', component:CadastroClientesComponent, canActivate: [AutenticadoGuard]},
+ {path: 'cadastro-produto', component:CadastroProdutosComponent, canActivate: [AutenticadoGuard]},
+ {path: 'lista-produtos', component:ListaProdutosComponent, canActivate: [AutenticadoGuard]},
+ {path: 'cadastro-produto/:id', component:CadastroProdutosComponent, canActivate: [AutenticadoGuard]},
+ {path: 'cadastro-pedido', component:CadastroPedidosClientesComponent, canActivate: [AutenticadoGuard]},
+ {path: 'cadastro-pedido/:id', component:CadastroPedidosClientesComponent, canActivate: [AutenticadoGuard]},
+ {path: 'lista-pedidos', component: ListaPedidosComponent, canActivate: [AutenticadoGuard]},
+ {path: 'lista-lojas', component:  ListaLojasComponent, canActivate: [AutenticadoGuard]},
+ {path: 'lista-campanhas', component:ListaCampanhasComponent, canActivate: [AutenticadoGuard]},
+ {path: 'cadastro-loja', component:CadastroLojasComponent, canActivate: [AutenticadoGuard]},
+ {path: 'cadastro-campanhas', component: CadastroCampanhasComponent, canActivate: [AutenticadoGuard]},
+ {path: 'lojas-maps', component: GoogleMapsDemoComponent, canActivate: [AutenticadoGuard]},
+ {path: '**', redirectTo:'login', pathMatch: 'full'}
 ];
 
 @NgModule({

@@ -4,7 +4,7 @@ import { LojaServico } from './../../services/serviceLojas/lojaServico';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CepService } from 'src/app/services/cep.service';
+import { CepService } from 'src/app/services/guard/cep.service';
 
 @Component({
   selector: 'app-cadastro-lojas',

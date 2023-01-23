@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from './../../services/auth-service.service';
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/guard/auth-service.service';
 
 @Component({
   selector: 'app-login',

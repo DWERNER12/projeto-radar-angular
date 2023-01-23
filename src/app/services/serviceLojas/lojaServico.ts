@@ -2,7 +2,7 @@ import { Loja } from './../../models/modeloLoja';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { firstValueFrom } from "rxjs/internal/firstValueFrom";
 import { environment } from "src/environments/environment";
-import { GetToken } from '../redirect/getToken';
+import { GetToken } from '../token/getToken';
 
 export class LojaServico{
 

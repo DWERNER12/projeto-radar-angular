@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { AutenticadoGuard } from './services/autenticado.guard';
-import { AuthService } from './services/auth-service.service';
+import { AutenticadoGuard } from './services/guard/autenticado.guard';
 
 
 @Component({

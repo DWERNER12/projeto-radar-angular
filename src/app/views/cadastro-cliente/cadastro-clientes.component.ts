@@ -1,4 +1,3 @@
-import { CepService } from './../../services/cep.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,6 +5,7 @@ import { Cliente } from 'src/app/models/modeloCliente';
 
 import { ClienteServico } from 'src/app/services/serviceClientes/clienteServico';
 import { Form, FormControl, NgForm } from '@angular/forms';
+import { CepService } from 'src/app/services/guard/cep.service';
 
 @Component({
   selector: 'app-cadastro-clientes',
