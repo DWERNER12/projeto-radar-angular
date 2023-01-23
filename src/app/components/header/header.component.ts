@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/guard/auth-service.service';
+import { TokenServico } from 'src/app/services/token/tokenServico';
 
 
 @Component({
@@ -10,20 +11,31 @@ import { AuthService } from 'src/app/services/guard/auth-service.service';
 })
 export class HeaderComponent implements OnInit {
  
+  mostrarNav = new EventEmitter<boolean>();
 
   constructor(
-    private authService: AuthService,
+    private http:HttpClient,
     private router:Router
     ) { }
+
+  private authServico:TokenServico = {} as TokenServico;
      
   ngOnInit(): void {
+    this.authServico = new TokenServico(this.http)
   }
 
-  logout()
+  async logout()
   {
-    //this.authService.logout();
-    this.router.navigateByUrl('/login');
+    localStorage.clear();
+    await this.authServico.tokenValido();
+    this.mostrarNav.emit(false);
+    this.redirectTo('/login')
   }
+
+  redirectTo(uri:string){
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+    this.router.navigate([uri]));
+ }
 
 }
 

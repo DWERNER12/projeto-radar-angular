@@ -18,6 +18,7 @@ export class AppComponent {
     this.autenticadoGuard.mostrarNav.subscribe(
       mostrar => this.mostrarMenu = mostrar
     );
+    console.log("MOSTRAR MENU: " + this.mostrarMenu)
     
   }
 

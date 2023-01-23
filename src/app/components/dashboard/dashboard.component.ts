@@ -51,8 +51,9 @@ export class DashboardComponent implements OnInit {
   public optionsMapaDeCalor = {
     region: 'BR',
     resolution: 'provinces',
-    width: 750,
-    height: 330,
+    backgroundColor: '#81d4fa',
+    height: 400,
+    align: 'center',
     colorAxis: {
       colors: [
         '#EAF2F8',
@@ -73,7 +74,7 @@ export class DashboardComponent implements OnInit {
 
   // ==================== DADOS QTD DE PRODUTOS EM ESTOQUE ====================
   public dadosQtdProdEstoqueDash: any[] = [];
-  tipoGraficoQtdProdutosEstoque: ChartType = ChartType.Bar;
+  tipoGraficoQtdProdutosEstoque: ChartType = ChartType.BarChart;
   public optionsGraficoProdutosEstoque = {
     pieSliceText: 'label',
     legend: { position: 'none' },
@@ -83,7 +84,7 @@ export class DashboardComponent implements OnInit {
 
   // ==================== DADOS MOVIMENTACAO PRODUTO ====================
   public dataGraficoMovimentacaoProduto: any = [];
-  tipoGraficoMovimentacaoProdutos: ChartType = ChartType.ColumnChart;
+  tipoGraficoMovimentacaoProdutos: ChartType = ChartType.BarChart;
   public optionsGraficoMovimentacaoProduto = {
     width: 600,
     legend: { position: 'none' },
@@ -191,10 +192,10 @@ export class DashboardComponent implements OnInit {
 
     //DADOS PRODUTOS - ESTOQUE
     let listaNovaProdutos = [];
-    for (let i = 0; i < this.produtoInfoDash.length; i++) {
+    for (let i = 0; i < this.produtos.length; i++) {
       listaNovaProdutos.push([
-        this.produtoInfoDash[i].nome,
-        this.produtoInfoDash[i].qtd_estoque,
+        this.produtos[i].nome,
+        this.produtos[i].qtd_Estoque,
       ]);
     }
     this.dadosQtdProdEstoqueDash = listaNovaProdutos;

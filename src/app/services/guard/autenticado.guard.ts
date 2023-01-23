@@ -21,8 +21,14 @@ export class AutenticadoGuard implements CanActivate {
       canActivate(
       route: ActivatedRouteSnapshot,
       state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      return this.isValido();
-    
+      let token = localStorage.getItem("token");
+      if(token){
+        return this.isValido();
+      }else{
+        this.mostrarNav.emit(false);
+        this.router.navigateByUrl("/login")
+        return false;
+      }
 
   }
 

@@ -18,6 +18,7 @@ import { AutenticadoGuard } from './services/guard/autenticado.guard';
 import { NotFoundComponent } from './views/not-found/not-found.component';
 
 const routes: Routes = [
+ {path: '',redirectTo: 'home', pathMatch:'full'},
  {path: 'login', component:LoginComponent},
  {path: 'home', canActivate: [AutenticadoGuard], component:HomeComponent},
  {path: 'dashboard', canActivate: [AutenticadoGuard], component:DashboardComponent },

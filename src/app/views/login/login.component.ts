@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/guard/auth-service.service';
+import { TokenServico } from 'src/app/services/token/tokenServico';
 
 @Component({
   selector: 'app-login',
@@ -17,9 +18,18 @@ export class LoginComponent implements OnInit {
   ) { }
 
   private authService:AuthService = {} as AuthService
-
+  private tokenServico:TokenServico = {} as TokenServico
   ngOnInit(): void {
-    this.authService = new AuthService(this.http,this.router);    
+    this.authService = new AuthService(this.http);    
+    this.tokenServico = new TokenServico(this.http);
+    this.estaLogado();
+  }
+
+  async estaLogado(){
+    let res = await this.tokenServico.tokenValido()
+    if(res){
+      this.router.navigateByUrl("/home");
+    }
   }
   
   public logado:boolean = false

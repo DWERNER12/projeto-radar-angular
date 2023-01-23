@@ -1,19 +1,23 @@
 <section class="vh-100" style="background-color: #b8d2e4;">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
+  <div class="container h-100">
+    <div class="d-flex justify-content-center align-items-center h-100">
       <div class="col col-xl-10">
         <div class="card" style="border-radius: 1rem;">
-          <div class="row g-0">
-            <div class="col-md-6 col-lg-5 d-none d-md-block">
-              <img
-                src="https://cdn.discordapp.com/attachments/1045831985039417404/1049512545498701874/logo_radar_c_fundo.png"
-                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
-            </div>
-            <div class="col-md-6 col-lg-7 d-flex align-items-center">
-              <div class="card-body p-4 p-lg-5 text-black">
+          <div class="row d-flex align-items-center">
+            
+            <div class="col ">
 
-                <form id="contactForm">
+              <div class="card-body p-lg-5 text-black ">
 
+                <div class="d-flex justify-content-center mb-5 ">
+                  <div class="col-rm align-items-center">
+                      <img src="https://radar.farmarcas.com.br/authentication/adaa9473ff7a59a99465.svg" class="img-fluid">
+                  </div>
+                </div>
+
+                <form id="contactForm" class="col d-flex align-items-center">
+
+                  <div class="row">
                   <div class="form-floating mb-3">
                     <input class="form-control" id="nome" name="nome" type="text" [(ngModel)]="email"
                       placeholder="Digite o seu nome..." [ngClass]="mensagem ? 'is-invalid' : ''">
@@ -28,7 +32,8 @@
                     <p class="mb-1 text-danger" *ngIf="mensagem">Email ou senha inválidos.</p>
                   </div>
 
-                  <button class="btn btn-primary" id="submitButton" type="button" (click)="logar()">Enviar</button>
+                  <button class="btn btn-primary" id="submitButton" type="button" (click)="logar()">Entrar</button>
+                </div>
                 </form>
 
               </div>
